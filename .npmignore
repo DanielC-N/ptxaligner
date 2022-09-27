@@ -3,3 +3,4 @@ scripts/
 discussion/
 .nyc_output/
 .idea/
+.parcel-cache/
