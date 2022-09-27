@@ -115,13 +115,33 @@
     "description": "PERF=>PERF adds report to verses"
   },
   {
-    "id": 999,
-    "type": "Outputs",
-    "outputs": [
+    "id": 6,
+    "title": "PERF to USFM",
+    "name": "perf2usfm",
+    "type": "Transform",
+    "inputs": [
       {
         "name": "perf",
         "type": "json",
         "source": "Transform 5 perf"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "usfm",
+        "type": "text"
+      }
+    ],
+    "description": "PERF=>USFM: Conversion via Proskomma"
+  },
+  {
+    "id": 999,
+    "type": "Outputs",
+    "outputs": [
+      {
+        "name": "usfm",
+        "type": "text",
+        "source": "Transform 6 usfm"
       }
     ]
   }

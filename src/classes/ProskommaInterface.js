@@ -123,7 +123,7 @@ class ProskommaInterface {
     async saveFile(file, rpath="./output.json") {
         try {
             if(typeof file === "string") {
-                let thepath = "./output.usfm";
+                let thepath = rpath;
                 await fse.outputFile(path.resolve(thepath), file);
             } else {
                 await fse.outputJson(path.resolve(rpath), file);

@@ -1,12 +1,13 @@
 {
   "name": "ptxaligner",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "a command line tool to pre-align PTX files with a greek usfm and another usfm from the desired language, into one pre-aligned usfm.",
   "source": "src/index.js",
   "main": "dist/main.js",
   "scripts": {
-    "test": "node dist/main.js ./tests/test_titus.json",
-    "align": "node dist/main.js",
+    "testfr": "npx ptxaligner ./tests/test_titus_french.json",
+    "testes": "npx ptxaligner ./tests/test_titus_spanish.json",
+    "align": "npx ptxaligner",
     "watch": "parcel watch",
     "build": "rm -fr dist && parcel build --no-source-maps"
   },
@@ -34,12 +35,13 @@
     "parcel": "^2.7.0"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "commander": "^9.4.0",
     "epitelete": "^0.2.6",
     "fs-extra": "^10.1.0",
     "path": "^0.12.7",
     "proskomma": "^0.7.15",
-    "uw-proskomma": "^0.8.5",
     "proskomma-json-tools": "^0.5.6",
-    "axios": "^0.27.2"
+    "uw-proskomma": "^0.8.5"
   }
 }

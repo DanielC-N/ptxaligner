@@ -1,7 +1,7 @@
 .idea/
 dist/
-tests/alignedtext.json
-alignedtext.json
+tests/alignedtext*
+alignedtext*
 
 # Logs
 logs

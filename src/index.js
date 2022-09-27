@@ -19,34 +19,55 @@ async function getDocumentHttp(addr) {
     }
 }
 
-module.exports = async function ptxaligner(args) {
-    const lena = args.length;
-    if(lena < 1 || lena > 1) {
-        throw Error("invalid number of arguments. Given : " + lena + ". Expected : exactly 1");
-    }
-
+module.exports = async function ptxaligner(rpath, outputperf=false, verbose=false) {
     const pk = new ProskommaInterface();
-    const config = JSON.parse(fse.readFileSync(path.resolve(args[0])).toString());
+    const resolvedPath = path.resolve(rpath);
+    const config = JSON.parse(fse.readFileSync(resolvedPath).toString());
+    const nameFile = resolvedPath.split("/").pop().split(".")[0];
+    const filename = `./alignedtext_${nameFile}`;
 
     const addr_greek = config.greek_usfm_path;
     const selectors_greek = config.greek_selectors;
-    const addr_french = config.raw_usfm_path;
-    const selectors_french = config.raw_usfm_selectors;
+    const addr_target_lang = config.raw_usfm_path;
+    const selectors_target_lang = config.raw_usfm_selectors;
     const addr_ptx = config.ptx_path;
 
+    verbose && console.log("Retrieving greek usfm... ");
     await pk.addDocumentHttp(addr_greek, "gre", "ugnt");
-    await pk.addDocumentHttp(addr_french);
+    verbose && console.log("Done");
+
+    verbose && console.log("Retrieving target lang usfm... ");
+    await pk.addDocumentHttp(addr_target_lang);
+    verbose && console.log("Done");
+
+    verbose && console.log("Retrieving ptx... ");
     const ptx_titus = await getDocumentHttp(addr_ptx);
+    verbose && console.log("Done");
 
     const pipeline = new PipelineHandler(pk.getInstance(), pipelines);
-    const output = await pipeline.runPipeline("alignmentPipeline", {
-        greek_usfm: pk.getUsfm("gre_ugnt"),
-        french_usfm: pk.getUsfm("fra_ust"),
-        ptx: ptx_titus,
-        selectors_greek: selectors_greek,
-        selectors_french: selectors_french
-    });
+    if(outputperf) {
+        verbose && console.log("running alignmentPipeline... ");
+        let output = await pipeline.runPipeline("alignmentPipeline", {
+            greek_usfm: pk.getUsfm("gre_ugnt"),
+            target_lang_usfm: pk.getUsfm("fra_ust"),
+            ptx: ptx_titus,
+            selectors_greek: selectors_greek,
+            selectors_target_lang: selectors_target_lang
+        });
+        verbose && console.log("Done");
+        await pk.saveFile(output.perf, filename + ".json");
+    } else {
+        verbose && console.log("running alignmentPipelineUSFMOutput... ");
+        let output = await pipeline.runPipeline("alignmentPipelineUSFMOutput", {
+            greek_usfm: pk.getUsfm("gre_ugnt"),
+            target_lang_usfm: pk.getUsfm("fra_ust"),
+            ptx: ptx_titus,
+            selectors_greek: selectors_greek,
+            selectors_target_lang: selectors_target_lang
+        });
+        verbose && console.log("Done");
+        await pk.saveFile(output.usfm, filename + ".usfm");
+    }
 
-    await pk.saveFile(output.perf, "./alignedtext.json");
-
+    console.log("File saved as " + filename);
 }
