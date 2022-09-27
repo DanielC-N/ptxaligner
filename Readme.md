@@ -1,5 +1,12 @@
 # ptxaligner
 
+## Usage as a npm package
+
+```
+$ npm install -g ptxaligner
+$ ptxaligner ./path/to/your/config.json
+```
+
 ## Getting Started
 
 ```
