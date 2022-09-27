@@ -19,8 +19,7 @@ async function getDocumentHttp(addr) {
     }
 }
 
-async function ptxaligner() {
-    const args = process.argv.slice(2);
+module.exports = async function ptxaligner(args) {
     const lena = args.length;
     if(lena < 1 || lena > 1) {
         throw Error("invalid number of arguments. Given : " + lena + ". Expected : exactly 1");
@@ -30,7 +29,9 @@ async function ptxaligner() {
     const config = JSON.parse(fse.readFileSync(path.resolve(args[0])).toString());
 
     const addr_greek = config.greek_usfm_path;
+    const selectors_greek = config.greek_selectors;
     const addr_french = config.raw_usfm_path;
+    const selectors_french = config.raw_usfm_selectors;
     const addr_ptx = config.ptx_path;
 
     await pk.addDocumentHttp(addr_greek, "gre", "ugnt");
@@ -42,14 +43,10 @@ async function ptxaligner() {
         greek_usfm: pk.getUsfm("gre_ugnt"),
         french_usfm: pk.getUsfm("fra_ust"),
         ptx: ptx_titus,
-        selectors_greek: JSON.parse("{\"lang\": \"gre\", \"abbr\": \"ugnt\"}"),
-        selectors_french: JSON.parse("{\"lang\": \"fra\", \"abbr\": \"ust\"}")
+        selectors_greek: selectors_greek,
+        selectors_french: selectors_french
     });
 
     await pk.saveFile(output.perf, "./alignedtext.json");
 
 }
-
-// ptxaligner();
-
-export default ptxaligner;

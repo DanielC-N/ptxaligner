@@ -1,18 +1,23 @@
 {
   "name": "ptxaligner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a command line tool to pre-align PTX files with a greek usfm and another usfm from the desired language, into one pre-aligned usfm.",
   "source": "src/index.js",
   "main": "dist/main.js",
   "scripts": {
     "test": "node dist/main.js ./tests/test_titus.json",
+    "align": "node dist/main.js",
     "watch": "parcel watch",
-    "build": "parcel build"
+    "build": "rm -fr dist && parcel build --no-source-maps"
+  },
+  "bin": {
+    "ptxaligner": "./bin/global.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DanielC-N/ptxaligner.git"
   },
+  "preferGlobal": true,
   "keywords": [
     "ptx",
     "align",
