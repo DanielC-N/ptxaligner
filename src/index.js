@@ -1,9 +1,10 @@
-import PipelineHandler from './classes/PipelineHandler';
-import ProskommaInterface from './classes/ProskommaInterface';
+import PipelineHandler from "pipeline-handler";
+import ProskommaInterface from "./classes/ProskommaInterface";
 import Axios from "axios";
-import pipelines from '../data/pipelines';
-import saveFile from "./utils/utils";
-import glWordsForLemma from './utils/gl_words_for_lemma';
+import pipelines from "../data/pipelines";
+import transforms from "../data/transforms";
+import utils from "./utils/utils";
+import glWordsForLemma from "./utils/gl_words_for_lemma";
 
 const path = require("path");
 const fse = require("fs-extra");
@@ -33,33 +34,37 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const addr_target_lang = config.raw_usfm_path;
     const selectors_target_lang = config.raw_usfm_selectors;
     const addr_ptx = config.ptx_path;
+    const numbook = config.numbook;
 
     verbose && console.log("Retrieving greek usfm... ");
-    await pk.addDocumentHttp(addr_greek, "gre", "ugnt");
+    await pk.addDocumentHttp(addr_greek, selectors_greek.lang, selectors_greek.abbr);
     verbose && console.log("Done");
 
-    verbose && console.log("Retrieving target lang usfm... ");
-    await pk.addDocumentHttp(addr_target_lang);
+    verbose && console.log("Retrieving target lang usfm... ", selectors_target_lang.lang);
+    await pk.addDocumentHttp(addr_target_lang, selectors_target_lang.lang, selectors_target_lang.abbr);
     verbose && console.log("Done");
 
     verbose && console.log("Retrieving ptx... ");
     const ptx_titus = await getDocumentHttp(addr_ptx);
     verbose && console.log("Done");
 
-    const pipeline = new PipelineHandler(pk.getInstance(), pipelines);
+    const pipeline = new PipelineHandler(pipelines, transforms, pk.getInstance(), verbose);
+    const jsonlsg = JSON.parse(fse.readFileSync("../data/LSG1910_bible_strongs/bible_LSGS.json").toString());
 
     verbose && console.log("running alignmentPipeline... ");
-    let output = await pipeline.runPipeline("alignmentPipeline", {
-        greek_usfm: pk.getUsfm("gre_ugnt"),
-        target_lang_usfm: pk.getUsfm("fra_ust"),
+    let output = await pipeline.runPipeline("alignmentPipeline_LSG1910", {
+        greek_usfm: pk.getUsfm(selectors_greek.lang + "_" + selectors_greek.abbr),
+        target_lang_usfm: pk.getUsfm(selectors_target_lang.lang + "_" + selectors_target_lang.abbr),
         ptx: ptx_titus,
         selectors_greek: selectors_greek,
-        selectors_target_lang: selectors_target_lang
+        selectors_target_lang: selectors_target_lang,
+        numbook: numbook,
+        jsonlsg: jsonlsg
     });
     verbose && console.log("Done");
 
     if(outputperf) {
-        await saveFile(output.perf, filename + ".json");
+        await utils.saveFile(output.perf, filename + ".json");
     }
 
     if(hashByLemma || !outputperf) {
@@ -80,7 +85,7 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
             verbose && console.log("hashing done. Saved here :", realpath);
         }
         if(!outputperf) {
-            await saveFile(outputusfm.usfm, filename + ".usfm");
+            await utils.saveFile(outputusfm.usfm, filename + ".usfm");
         }
     }
 

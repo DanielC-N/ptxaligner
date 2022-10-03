@@ -1,7 +1,7 @@
 const fse = require('fs-extra');
 
 /**
- * Hash the usfm to add 
+ * Hash the usfm to generate a lemma occurences and translation report
  * @param {Proskomma} pk the proskomma instance
  * @param {string} usfm the input usfm
  * @param {string} outPath the path you want to save the output

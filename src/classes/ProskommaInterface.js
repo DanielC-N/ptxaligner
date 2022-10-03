@@ -93,7 +93,7 @@ class ProskommaInterface {
      */
     async addDocumentHttp(addr, codeLang="fra", abbr="ust") {
         try {
-            this.verbose && console.log(`Fetching HTTP content for Source lsg_tit.usfm`);
+            this.verbose && console.log(`Fetching HTTP content for Source ${addr}`);
             const response = await Axios.get(addr);
             if (response.status !== 200) {
                 console.log(`Status code ${response.status} when fetching content by HTTP(S) for Source : ${addr}`);
@@ -101,7 +101,7 @@ class ProskommaInterface {
                 await this.addRawDocument(response.data, codeLang, abbr);
             }
         } catch (err) {
-            console.log(`Exception when fetching content by HTTP(S) for Source lsg_tit.usfm: \n${err}`);
+            console.log(`Exception when fetching content by HTTP(S) for Source ${addr}: \n${err}`);
         }
     }
 

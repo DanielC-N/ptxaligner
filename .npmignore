@@ -4,3 +4,6 @@ discussion/
 .nyc_output/
 .idea/
 .parcel-cache/
+data/LSG1910_bible_strongs
+data/pipelines/alignmentPipeline_LSG1910.json
+data/transforms/makeAlignment_LSG1910.js
