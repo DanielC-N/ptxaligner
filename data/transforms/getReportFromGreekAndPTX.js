@@ -1,7 +1,5 @@
 import {PerfRenderFromJson, transforms, mergeActions} from 'proskomma-json-tools';
 
-
-
 class Ptxhandler {
     constructor(PTX) {
         this.PTX = JSON.parse(JSON.stringify(PTX));
