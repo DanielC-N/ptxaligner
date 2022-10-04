@@ -225,7 +225,7 @@ const localToUsfmActions = {
     ],
 };
 
-const perf2usfmCode = function ({perf}) {
+const perf2usfmCode_v2 = function ({perf}) {
     const cl = new PerfRenderFromJson(
         {
             srcJson: perf,
@@ -237,8 +237,8 @@ const perf2usfmCode = function ({perf}) {
     return {usfm: output.usfm};
 }
 
-const perf2usfm = {
-    name: "perf2usfm",
+const perf2usfm_v2 = {
+    name: "perf2usfm_v2",
     type: "Transform",
     description: "PERF=>USFM",
     inputs: [
@@ -254,6 +254,6 @@ const perf2usfm = {
             type: "text",
         }
     ],
-    code: perf2usfmCode
+    code: perf2usfmCode_v2
 }
-export default perf2usfm;
+export default perf2usfm_v2;
