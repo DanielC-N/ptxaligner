@@ -9,7 +9,7 @@ program
     .option('-p, --perf', 'output a perf file instead of an usfm file')
     .option('-h, --hashbylemma <path>', 'output a perf file instead of an usfm file')
     .option('-v, --verbose', 'verbose')
-    .option('-p, --perf', 'run the perf2usfm pipeline');
+    .option('-p, --perf <path>', 'run the perf2usfm pipeline');
 
 program.parse();
 
@@ -18,6 +18,11 @@ const args = program.args;
 const la = args.length;
 
 let getHash = options.hashbylemma !== undefined;
+if(options.perf !== undefined) {
+    ptxaligner(args[0], options.perf !== undefined, options.verbose !== undefined, getHash, getHash ? options.hashbylemma: "");
+    return;
+}
+
 if(la === 1) {
     ptxaligner(args[0], options.perf !== undefined, options.verbose !== undefined, getHash, getHash ? options.hashbylemma: "");
 } else if(options.config && options.config.length > 0) {
