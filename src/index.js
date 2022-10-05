@@ -26,63 +26,18 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const resolvedPath = path.resolve(rpath);
     const config = JSON.parse(fse.readFileSync(resolvedPath).toString());
     const nameFile = resolvedPath.split("/").pop().split(".")[0];
-    const filename = `./alignedtext_${nameFile}`;
-
-    const addr_greek = config.greek_usfm_path;
-    const selectors_greek = config.greek_selectors;
-    const addr_target_lang = config.raw_usfm_path;
-    const selectors_target_lang = config.raw_usfm_selectors;
-    const addr_ptx = config.ptx_path;
-
-    verbose && console.log("Retrieving greek usfm... ");
-    await pk.addDocumentHttp(addr_greek, "gre", "ugnt");
-    verbose && console.log("Done");
-
-    verbose && console.log("Retrieving target lang usfm... ");
-    await pk.addDocumentHttp(addr_target_lang);
-    verbose && console.log("Done");
-
-    verbose && console.log("Retrieving ptx... ");
-    const ptx_titus = await getDocumentHttp(addr_ptx);
-    verbose && console.log("Done");
+    const filename = `./better_alignedtext_${nameFile}`;
 
     const pipeline = new PipelineHandler(pk.getInstance(), pipelines);
 
-    verbose && console.log("running alignmentPipeline... ");
-    let output = await pipeline.runPipeline("alignmentPipeline", {
+    verbose && console.log("running parseGreekTESTS... ");
+    let output = await pipeline.runPipeline("parseGreekTESTS", {
         greek_usfm: pk.getUsfm("gre_ugnt"),
-        target_lang_usfm: pk.getUsfm("fra_ust"),
-        ptx: ptx_titus,
         selectors_greek: selectors_greek,
-        selectors_target_lang: selectors_target_lang
     });
     verbose && console.log("Done");
 
-    if(outputperf) {
-        await saveFile(output.perf, filename + ".json");
-    }
-
-    if(hashByLemma || !outputperf) {
-        verbose && console.log("transforming the perf to usfm... ");
-        let outputusfm = await pipeline.runPipeline("perf2usfmPipeline", {
-            perf: output.perf,
-        });
-        verbose && console.log("Done");
-        if(hashByLemma) {
-            verbose && console.log("Hashing the ufsm ");
-            // TODO do stuff...
-            let realpath = pathhash.toLowerCase();
-            let isjson = pathhash.split(".").at(-1);
-            if(isjson !== "json") {
-                realpath = realpath + ".json";
-            }
-            await glWordsForLemma(pk.getInstance(), outputusfm.usfm, realpath);
-            verbose && console.log("hashing done. Saved here :", realpath);
-        }
-        if(!outputperf) {
-            await saveFile(outputusfm.usfm, filename + ".usfm");
-        }
-    }
+    await saveFile(output.perf, filename + ".json");
 
     console.log("File saved as " + filename);
 }

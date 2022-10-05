@@ -1,0 +1,46 @@
+[
+  {
+    "id": 0,
+    "type": "Inputs",
+    "inputs": {
+      "greek_usfm": "text",
+      "selectors_greek": "json"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Generate a report from Greek USFM",
+    "name": "parseGreekUsfm",
+    "type": "Transform",
+    "inputs": [
+      {
+        "name": "usfm",
+        "type": "text",
+        "source": "Input greek_usfm"
+      },
+      {
+        "name": "selectors",
+        "type": "json",
+        "source": "Input selectors_greek"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "report_greek",
+        "type": "json"
+      }
+    ],
+    "description": "Generate a detailled occurences greek and lemma report"
+  },
+  {
+    "id": 999,
+    "type": "Outputs",
+    "outputs": [
+      {
+        "name": "perf",
+        "type": "json",
+        "source": "Transform 2 report_greek"
+      }
+    ]
+  }
+]

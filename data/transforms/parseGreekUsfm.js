@@ -16,7 +16,7 @@ const handleOccurences = function (arrayWords) {
     return [occurences, posOccurence];
 }
 
-const makeAlignmentActions = {
+const generateGreekReportActions = {
     startDocument: [
         {
             description: "Set up state variables and output",
@@ -138,12 +138,12 @@ const makeAlignmentActions = {
     ],
 };
 
-const makeReportCode = function ({PTX, perf}) {
+const makeReportGreek = function ({PTX, perf}) {
     // console.log("getRawStringFromChapterVerse(1, 1) : ", handler.getRawStringFromChapterVerse(1, 1));
     const cl = new PerfRenderFromJson(
         {
             srcJson: perf,
-            actions: makeAlignmentActions
+            actions: generateGreekReportActions
         }
     );
     const output = {};
@@ -152,8 +152,8 @@ const makeReportCode = function ({PTX, perf}) {
     return {report: output.report};
 }
 
-const getReportFromGreekAndPTX = {
-    name: "getReportFromGreekAndPTX",
+const parseGreekUsfm = {
+    name: "parseGreekUsfm",
     type: "Transform",
     description: "PERF=>JSON: Generates alignment report",
     inputs: [
@@ -174,7 +174,7 @@ const getReportFromGreekAndPTX = {
             type: "json",
         }
     ],
-    code: makeReportCode
+    code: makeReportGreek
 }
 
-export default getReportFromGreekAndPTX;
+export default parseGreekUsfm;

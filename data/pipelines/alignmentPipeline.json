@@ -12,8 +12,8 @@
   },
   {
     "id": 2,
-    "title": "greek USFM to PERF",
-    "name": "usfm2perf",
+    "title": "Generate a report from Greek USFM",
+    "name": "parseGreekUsfm",
     "type": "Transform",
     "inputs": [
       {
@@ -33,10 +33,10 @@
         "type": "json"
       }
     ],
-    "description": "USFM=>PERF: Conversion via Proskomma"
+    "description": "Generate a detailled occurences greek and lemma report"
   },
   {
-    "id": 4,
+    "id": 3,
     "title": "target lang USFM to PERF",
     "name": "usfm2perf",
     "type": "Transform",
@@ -61,8 +61,8 @@
     "description": "USFM=>PERF: Conversion via Proskomma"
   },
   {
-    "id": 3,
-    "title": "merge the PTX infos and the input PERF",
+    "id": 4,
+    "title": "merge the PTX infos and the input Report from greek",
     "name": "getReportFromGreekAndPTX",
     "type": "Transform",
     "inputs": [
@@ -83,7 +83,7 @@
         "type": "json"
       }
     ],
-    "description": "PERF=>JSON: Generates alignment report"
+    "description": "PERF+PTX=>JSON: Generates alignment report"
   },
   {
     "id": 5,
@@ -94,12 +94,12 @@
       {
         "name": "perf",
         "type": "json",
-        "source": "Transform 4 perf"
+        "source": "Transform 3 perf"
       },
       {
         "name": "report",
         "type": "json",
-        "source": "Transform 3 report"
+        "source": "Transform 4 report"
       }
     ],
     "outputs": [
