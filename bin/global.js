@@ -9,7 +9,6 @@ program
     .option('-p, --perf', 'output a perf file instead of an usfm file')
     .option('-h, --hashbylemma <path>', 'output a perf file instead of an usfm file')
     .option('-v, --verbose', 'verbose')
-    .option('-p, --perf <path>', 'run the perf2usfm pipeline');
 
 program.parse();
 
