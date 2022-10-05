@@ -7,6 +7,28 @@ const oneifyTag = t => {
     return t;
 }
 
+const buildMilestone = (atts, type) => {
+    if(!atts["x-morph"]) console.log(atts);
+    let xstrong = atts["x-strong"][0];
+    let xlemma = atts["x-lemma"][0];
+    let xmorph = atts["x-morph"] === undefined ? "" : atts["x-morph"].join(',');
+    let xoccurrence = atts["x-occurrence"][0];
+    let xoccurrences = atts["x-occurrences"][0];
+    let xcontent = atts["x-content"][0] === undefined ? "" : atts["x-content"][0];
+
+    return `\\${type}-s |x-strong="${xstrong}" x-lemma="${xlemma}" x-morph="${xmorph}" x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}" x-content="${xcontent}"\\*`
+}
+
+const buildEndWrapper = (atts, type, isnested = false) => {
+    let xoccurrence = atts["x-occurrence"][0];
+    let xoccurrences = atts["x-occurrences"][0];
+    // if it's nested, we simply add a "+" sign before the type
+    if(isnested) {
+        return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\+${type}* `;
+    }
+    return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\${type}* `;
+}
+
 const localToUsfmActions = {
     startDocument: [
         {
@@ -108,6 +130,36 @@ const localToUsfmActions = {
             }
         }
     ],
+    startMilestone: [
+        {
+            description: "Output start milestone",
+            test: () => true,
+            action: ({context, workspace}) => {
+                let contextSequenceElement = context.sequences[0].element;
+                let newStartMileStone = buildMilestone(contextSequenceElement.atts, oneifyTag(contextSequenceElement.subType.split(':')[1]));
+                workspace.usfmBits.push(newStartMileStone);
+            }
+        },
+    ],
+    endMilestone: [
+        {
+            description: "Output start milestone",
+            test: () => true,
+            action: ({context, workspace}) => {
+                workspace.usfmBits.push(`\\${oneifyTag(context.sequences[0].element.subType.split(':')[1])}-e\\*`);
+            }
+        },
+    ],
+    text: [
+        {
+            description: "Output text",
+            test: () => true,
+            action: ({context, workspace}) => {
+                const text = context.sequences[0].element.text;
+                workspace.usfmBits.push(text);
+            }
+        },
+    ],
     text: [
         {
             description: "Output text",
@@ -145,7 +197,6 @@ const localToUsfmActions = {
             test: () => true,
             action: ({workspace, context}) => {
                 let contextSequence = context.sequences[0];
-                console.log(contextSequence.element);
                 // handle nested wrappers : https://ubsicap.github.io/usfm/characters/nesting.html
                 if(workspace.nestedWrapper > 0) {
                     workspace.usfmBits.push(`\\+${oneifyTag(contextSequence.element.subType.split(':')[1])} `);
@@ -164,11 +215,18 @@ const localToUsfmActions = {
             action: ({workspace, context}) => {
                 workspace.nestedWrapper -= 1;
                 let contextSequence = context.sequences[0];
-                // handle nested wrappers : https://ubsicap.github.io/usfm/characters/nesting.html
-                if(workspace.nestedWrapper > 0) {
-                    workspace.usfmBits.push(`\\+${oneifyTag(contextSequence.element.subType.split(':')[1])}*`);
+                let subType = contextSequence.element.subType.split(':')[1];
+                let isNested = workspace.nestedWrapper > 0;
+                if(subType === "w") {
+                    let newEndW = buildEndWrapper(contextSequence.element.atts, oneifyTag(subType), isNested);
+                    workspace.usfmBits.push(newEndW);
                 } else {
-                    workspace.usfmBits.push(`\\${oneifyTag(contextSequence.element.subType.split(':')[1])}*`);
+                    // handle nested wrappers : https://ubsicap.github.io/usfm/characters/nesting.html
+                    if(isNested) {
+                        workspace.usfmBits.push(`\\+${oneifyTag(contextSequence.element.subType.split(':')[1])}*`);
+                    } else {
+                        workspace.usfmBits.push(`\\${oneifyTag(contextSequence.element.subType.split(':')[1])}*`);
+                    }
                 }
             }
         },

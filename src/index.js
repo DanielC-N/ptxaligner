@@ -14,7 +14,7 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const resolvedPath = path.resolve(rpath);
     const perf = JSON.parse(fse.readFileSync(resolvedPath).toString());
     const nameFile = resolvedPath.split("/").pop().split(".")[0];
-    const filename = `./usfmtext_${nameFile}`;
+    const filename = `./NEW_usfmtext_${nameFile}`;
 
     const pipeline = new PipelineHandler(pk.getInstance(), pipelines);
 
