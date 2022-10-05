@@ -24,9 +24,9 @@ const buildEndWrapper = (atts, type, isnested = false) => {
     let xoccurrences = atts["x-occurrences"][0];
     // if it's nested, we simply add a "+" sign before the type
     if(isnested) {
-        return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\+${type}* `;
+        return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\+${type}*`;
     }
-    return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\${type}* `;
+    return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\${type}*`;
 }
 
 const localToUsfmActions = {
