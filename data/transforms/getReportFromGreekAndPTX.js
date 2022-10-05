@@ -1,4 +1,5 @@
 import {PerfRenderFromJson, transforms, mergeActions} from 'proskomma-json-tools';
+import utils from '../../src/utils/utils';
 
 
 
@@ -215,8 +216,10 @@ const makeAlignmentActions = {
                 let morph = elem.atts["x-morph"];
                 let strong = elem.atts.strong[0];
                 let strongPTX = workspace.handler.getStrong(workspace.chapter, workspace.verses, workspace.wordPos);
-                if(workspace.chapter=="3" && workspace.verses=="1") console.log("strongPTX =", strongPTX, " || strong =", strong);
-                if(!strongPTX) {
+                if(strongPTX == strong) {
+                    workspace.handler.addInfosToWord(workspace.chapter, workspace.verses, workspace.wordPos, "lemma", lemma);
+                    workspace.handler.addInfosToWord(workspace.chapter, workspace.verses, workspace.wordPos, "morph", morph);
+                } else if(!strongPTX) {
                     const infos = {
                         "strong" : strong,
                         "lemma" : lemma,
@@ -225,11 +228,7 @@ const makeAlignmentActions = {
                         "word" : ""
                     };
                     workspace.handler.addWord(workspace.chapter, workspace.verses, workspace.wordPos, infos);
-                } else if(strongPTX == strong) {
-                    workspace.handler.addInfosToWord(workspace.chapter, workspace.verses, workspace.wordPos, "lemma", lemma);
-                    workspace.handler.addInfosToWord(workspace.chapter, workspace.verses, workspace.wordPos, "morph", morph);
                 } else {
-                    // TODO : manage when a word is missing in the PTX file
                     workspace.handler.addInfosToWord(workspace.chapter, workspace.verses, workspace.wordPos, "lemma", lemma);
                     workspace.handler.addInfosToWord(workspace.chapter, workspace.verses, workspace.wordPos, "morph", morph);
                 }
@@ -330,6 +329,7 @@ const makeReportCode = function ({PTX, perf}) {
     );
     const output = {};
     cl.renderDocument({docId: "", config: {PTX}, output});
+    // utils(JSON.stringify(output.report,null, " "));
     return {report: output.report};
 }
 
