@@ -215,6 +215,7 @@ const makeAlignmentActions = {
                 let morph = elem.atts["x-morph"];
                 let strong = elem.atts.strong[0];
                 let strongPTX = workspace.handler.getStrong(workspace.chapter, workspace.verses, workspace.wordPos);
+                if(workspace.chapter=="3" && workspace.verses=="1") console.log("strongPTX =", strongPTX, " || strong =", strong);
                 if(!strongPTX) {
                     const infos = {
                         "strong" : strong,
