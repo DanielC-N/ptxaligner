@@ -1,0 +1,2804 @@
+{
+  "schema": {
+    "structure": "flat",
+    "structure_version": "0.2.1",
+    "constraints": [
+      {
+        "name": "perf",
+        "version": "0.2.1"
+      }
+    ]
+  },
+  "metadata": {
+    "translation": {
+      "id": "gre_ugnt",
+      "selectors": {
+        "lang": "gre",
+        "abbr": "ugnt"
+      },
+      "properties": {},
+      "tags": []
+    },
+    "document": {
+      "id": "TIT TITFLS1910.PTX, Louis Segond 1910, French, 31-10-2011, Moon Sun Kim. Updated for DBL by E. Canales, September 2012.",
+      "bookCode": "TIT",
+      "ide": "UTF-8",
+      "h": "TITE",
+      "toc": "Épître de Paul à Tite",
+      "toc2": "Tite",
+      "properties": {},
+      "tags": []
+    }
+  },
+  "sequences": {
+    "OTMxNzAwODMt": {
+      "type": "main",
+      "blocks": [
+        {
+          "type": "graft",
+          "subtype": "title",
+          "target": "ZGI5YzhmM2Et"
+        },
+        {
+          "type": "graft",
+          "subtype": "introduction",
+          "target": "ZGY4Y2I4NWUt"
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "MjIzNTE4OTAt"
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "NWJmZjU2MWUt"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:p",
+          "content": [
+            {
+              "type": "mark",
+              "subtype": "chapter",
+              "atts": {
+                "number": "1"
+              }
+            },
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "1"
+              }
+            },
+            "Paul, serviteur de Dieu, et apôtre de Jésus-Christ pour la foi des élus de Dieu et la connaissance de la vérité qui est selon la piété, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "2"
+              }
+            },
+            "lesquelles reposent sur l’espérance de la vie éternelle, promise ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "ZDE0ZTAzMDct"
+            },
+            "dès les plus anciens temps par le Dieu ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MmFiY2IzNWUt"
+            },
+            "qui ne ment point, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "3"
+              }
+            },
+            "et qui a manifesté sa parole en son temps par la prédication ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MjFmNGU2ZDgt"
+            },
+            "qui m’a été confiée d’après l’ordre de Dieu notre Sauveur, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "4"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NDI4ZjU5MTYt"
+            },
+            "à Tite, mon enfant légitime en notre commune foi: ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "ODcyMTZjNDkt"
+            },
+            "que la grâce et la paix te soient données de la part de Dieu le Père et de Jésus-Christ notre Sauveur!"
+          ]
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "OTUyNmJkOGQt"
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "NmVkNzgzMGEt"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:p",
+          "content": [
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "5"
+              }
+            },
+            "Je t’ai laissé en Crète, afin que tu mettes en ordre ce qui reste à régler, et que, selon mes instructions, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MDgxZTViNTgt"
+            },
+            "tu établisses des anciens dans chaque ville, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "6"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "YTYyMTk0M2Qt"
+            },
+            "s’il s’y trouve quelque homme irréprochable, mari d’une seule femme, ayant des enfants fidèles, qui ne soient ni accusés de débauche ni rebelles. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "7"
+              }
+            },
+            "Car il faut que l’évêque soit irréprochable, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "YzQ1YzgxNjkt"
+            },
+            "comme économe de Dieu; qu’il ne soit ni arrogant, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NTEyYWMwMTgt"
+            },
+            "ni colère, ni adonné au vin, ni violent, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MzVlOGE1N2It"
+            },
+            "ni porté à un gain déshonnête; ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "8"
+              }
+            },
+            "mais ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NjY0MzgxY2It"
+            },
+            "qu’il soit hospitalier, ami des gens de bien, modéré, juste, saint, tempérant, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "9"
+              }
+            },
+            "attaché à la vraie parole telle qu’elle a été enseignée, afin d’être capable d’exhorter selon la saine doctrine et de réfuter les contradicteurs."
+          ]
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "MzhmZDMwYmUt"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:p",
+          "content": [
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "10"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "M2NlZDZmNmEt"
+            },
+            "Il y a, en effet, surtout parmi les circoncis, beaucoup de gens rebelles, de vains discoureurs et de séducteurs, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "11"
+              }
+            },
+            "auxquels il faut fermer la bouche. Ils bouleversent ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "ZWM2YWM2OTQt"
+            },
+            "des familles entières, enseignant pour un gain honteux ce qu’on ne doit pas enseigner. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "12"
+              }
+            },
+            "L’un d’entre eux, leur propre prophète, a dit: Crétois toujours menteurs, méchantes bêtes, ventres paresseux. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "13"
+              }
+            },
+            "Ce témoignage est vrai. C’est pourquoi reprends-les sévèrement, afin qu’ils aient une foi saine, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "14"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MDE5NzMyODkt"
+            },
+            "et qu’ils ne s’attachent pas à des fables judaïques et à des commandements d’hommes qui se détournent de la vérité. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "15"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NDgxZjg3ODYt"
+            },
+            "Tout est pur pour ceux qui sont purs; ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NmFiM2I4MGQt"
+            },
+            "mais rien n’est pur pour ceux qui sont souillés et incrédules, leur intelligence et leur conscience sont souillées. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "16"
+              }
+            },
+            "Ils font profession de connaître Dieu, mais ils le renient par leurs œuvres, étant abominables, rebelles, et incapables d’aucune bonne œuvre."
+          ]
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "ZGY2MjI3ZmMt"
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "OGIwNmVkOWUt"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:p",
+          "content": [
+            {
+              "type": "mark",
+              "subtype": "chapter",
+              "atts": {
+                "number": "2"
+              }
+            },
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "1"
+              }
+            },
+            "Pour toi, dis les choses qui sont conformes à la saine doctrine. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "2"
+              }
+            },
+            "Dis que les vieillards doivent être sobres, honnêtes, modérés, sains dans la foi, dans la charité, dans la patience. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "3"
+              }
+            },
+            "Dis que les femmes âgées ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "Mzk3YjcxOGMt"
+            },
+            "doivent aussi avoir l’extérieur qui convient à la sainteté, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MWNjMGE0YzUt"
+            },
+            "n’être ni médisantes, ni adonnées au vin; qu’elles doivent donner de bonnes instructions, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "4"
+              }
+            },
+            "dans le but d’apprendre aux jeunes femmes à aimer leurs maris et leurs enfants, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "5"
+              }
+            },
+            "à être retenues, chastes, occupées aux soins domestiques, bonnes, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NmE5NWY5MzMt"
+            },
+            "soumises à leurs maris, afin que la parole de Dieu ne soit pas blasphémée. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "6"
+              }
+            },
+            "Exhorte de même les jeunes gens à être modérés, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "7"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "N2U3ZjQ5OTAt"
+            },
+            "te montrant toi-même à tous égards un modèle de bonnes œuvres, et donnant un enseignement pur, digne, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "8"
+              }
+            },
+            "une parole saine, irréprochable, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "OTc3NWZjZjMt"
+            },
+            "afin que l’adversaire soit confus, n’ayant aucun mal à dire de nous. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "9"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "OTRkMzJkZWMt"
+            },
+            "Exhorte les serviteurs à être soumis à leurs maîtres, à leur plaire en toutes choses, à n’être point contredisants, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "10"
+              }
+            },
+            "à ne rien dérober, mais à montrer toujours une parfaite fidélité, afin de faire honorer en tout la doctrine de Dieu notre Sauveur."
+          ]
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "N2U4Y2QyNjMt"
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "ZGI3NjAwYTct"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:p",
+          "content": [
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "11"
+              }
+            },
+            "Car la grâce de Dieu, source de salut pour tous les hommes, a été manifestée. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "12"
+              }
+            },
+            "Elle nous enseigne à renoncer à ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MjdjMjY1MTQt"
+            },
+            "l’impiété et aux ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NjY2ZDZiNDAt"
+            },
+            "convoitises mondaines, et à vivre dans le siècle présent selon la sagesse, la justice et la piété, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "13"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "ZjkyNTU2ZWQt"
+            },
+            "en attendant la bienheureuse espérance, et la manifestation de la gloire du grand Dieu et de notre Sauveur Jésus-Christ, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "14"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NGNhNzc0NWMt"
+            },
+            "qui s’est donné lui-même pour nous, afin de nous racheter de toute iniquité, et de se faire un peuple qui lui appartienne, purifié par lui et ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "YzU2MGVjOTgt"
+            },
+            "zélé pour les bonnes œuvres. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "15"
+              }
+            },
+            "Dis ces choses, exhorte, et reprends, avec une pleine autorité. ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NDBiOTc5OTgt"
+            },
+            "Que personne ne te méprise."
+          ]
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "N2NmZWFhY2Ut"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:p",
+          "content": [
+            {
+              "type": "mark",
+              "subtype": "chapter",
+              "atts": {
+                "number": "3"
+              }
+            },
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "1"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "MzI5NDFjMmEt"
+            },
+            "Rappelle-leur d’être soumis aux magistrats et aux autorités, d’obéir, d’être prêts à toute bonne œuvre, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "2"
+              }
+            },
+            "de ne médire de personne, d’être pacifiques, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "Y2ZmMmM4ZDIt"
+            },
+            "modérés, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "YzFlNjUyNTAt"
+            },
+            "pleins de douceur envers tous les hommes. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "3"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NjQ0MmZjNjct"
+            },
+            "Car nous aussi, nous étions autrefois insensés, désobéissants, égarés, asservis à toute espèce de convoitises et de voluptés, vivant dans la méchanceté et dans l’envie, dignes d’être haïs, et nous haïssant les uns les autres. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "4"
+              }
+            },
+            "Mais, lorsque la bonté de Dieu notre Sauveur et son amour pour les hommes ont été manifestés, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "5"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "YjlhNzI2ZTYt"
+            },
+            "il nous a sauvés, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "OWFiMmY0NWUt"
+            },
+            "non à cause des œuvres de justice que nous aurions faites, ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NmI2ZmU0MmEt"
+            },
+            "mais selon sa miséricorde, par le baptême de la régénération et le renouvellement du Saint-Esprit, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "6"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NDFlZmMwMWMt"
+            },
+            "qu’il a répandu sur nous avec abondance par Jésus-Christ notre Sauveur, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "7"
+              }
+            },
+            "afin que, justifiés par sa grâce, nous devenions, en espérance, héritiers de la vie éternelle. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "8"
+              }
+            },
+            "Cette parole est certaine, et je veux que tu affirmes ces choses, afin que ceux qui ont cru en Dieu s’appliquent à pratiquer de bonnes œuvres. ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "Y2U3MzcyYWUt"
+            },
+            "Voilà ce qui est bon et utile aux hommes. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "9"
+              }
+            },
+            "Mais évite les discussions folles, les généalogies, les querelles, les disputes relatives à la loi; car elles sont inutiles et vaines. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "10"
+              }
+            },
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "ODlmZTMzNjEt"
+            },
+            "Éloigne de toi, après un premier et un second avertissement, celui qui provoque des divisions, ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "11"
+              }
+            },
+            "sachant qu’un homme de cette espèce est perverti, et qu’il pèche, en se condamnant lui-même."
+          ]
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "MjM3OWNiNDkt"
+        },
+        {
+          "type": "graft",
+          "subtype": "heading",
+          "target": "OTJiMWViY2Mt"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:p",
+          "content": [
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "12"
+              }
+            },
+            "Lorsque je t’enverrai Artémas ou ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "NzBmNjI5ZTQt"
+            },
+            "Tychique, hâte-toi de venir me rejoindre à Nicopolis; car c’est là que j’ai résolu de passer l’hiver. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "13"
+              }
+            },
+            "Aie soin de pourvoir au voyage de Zénas, le docteur de la loi, et ",
+            {
+              "type": "graft",
+              "subtype": "xref",
+              "target": "OTZlNTdiMWEt"
+            },
+            "d’Apollos, en sorte que rien ne leur manque. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "14"
+              }
+            },
+            "Il faut que les nôtres aussi apprennent à pratiquer de bonnes œuvres pour subvenir aux besoins pressants, afin qu’ils ne soient pas sans produire des fruits. ",
+            {
+              "type": "mark",
+              "subtype": "verses",
+              "atts": {
+                "number": "15"
+              }
+            },
+            "Tous ceux qui sont avec moi te saluent. Salue ceux qui nous aiment dans la foi. Que la grâce soit avec vous tous!"
+          ]
+        }
+      ]
+    },
+    "ZGI5YzhmM2Et": {
+      "type": "title",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:mt2",
+          "content": [
+            "ÉPÎTRE DE PAUL"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:mt",
+          "content": [
+            "À TITE"
+          ]
+        }
+      ]
+    },
+    "ZGY4Y2I4NWUt": {
+      "type": "introduction",
+      "blocks": [
+        {
+          "type": "graft",
+          "subtype": "title",
+          "target": "ODY1MDI5ZDAt"
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ip",
+          "content": [
+            "L’Épître à Tite fait partie, avec les deux précédentes, du groupe des pastorales, et partage donc avec elles certaines caractéristiques (voir l’introduction à 1 Timothée): il s’agit principalement d’instructions sur la direction des communautés ecclésiales. Voici la structure de cette épître:"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ib",
+          "content": []
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:io",
+          "content": [
+            "1. Adresse et salutations ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:ior",
+              "content": [
+                "1:1-40"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:io",
+          "content": [
+            "2. Mission d’organiser l’Église de Crète: des anciens pour la lutte contre les faussaires ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:ior",
+              "content": [
+                "1:5-16"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:io",
+          "content": [
+            "3. Exhortation des fidèles toutes catégories confondues; être exemple dans la communauté ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:ior",
+              "content": [
+                "2:1–3:11"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:io",
+          "content": [
+            "4. Recommandations particulières et salutations ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:ior",
+              "content": [
+                "3:12-15"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ib",
+          "content": []
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ip",
+          "content": [
+            "Tite est d’origine inconnue. Selon Gal 2:3, il serait né païen et grec. Devenu chrétien, il ne fut pas contraint de se faire circoncire. Tite n’est pas nommé dans le livre des Actes des Apôtres. Ce que nous savons de lui se trouve uniquement dans les épîtres."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ip",
+          "content": [
+            "L’objet de la lettre est donné en 1:5ss en ces termes: ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:it",
+              "content": [
+                "«Je t’ai laissé en Crète afin que tu mettes en ordre ce qui reste à régler, et que, selon mes instructions, tu établisses des anciens dans chaque ville…»"
+              ]
+            },
+            " L’auteur lui précise ainsi sa mission. C’est donc pour cette raison fondamentale qu’il lui adresse des encouragements pour s’assurer que les choses se passent comme voulu."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ip",
+          "content": [
+            "L’originalité du message de l’auteur apparaît précisément dans cette mission. Bien que Tite et Timothée soient appelés à exercer le même ministère, il incombe à Tite une tâche bien déterminée."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ip",
+          "content": [
+            "Même si le message de Tite reprend les sujets déjà traités dans 1 Timothée, on notera que les communautés tout comme les chrétiens sont différents. En effet dans la communauté crétoise il y a des incirconcis et des rebelles. L’auteur en avertit Tite: ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:it",
+              "content": [
+                "«L’un d’entre eux, leur propre prophète, a dit: Crétois toujours menteurs, méchantes bêtes, ventres paresseux… C’est pourquoi reprends-les sévèrement, afin qu’ils aient une foi saine…»"
+              ]
+            },
+            " (Tite 1:12-13)."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:ip",
+          "content": [
+            "Tite est lui aussi un fils spirituel de l’auteur comme Timothée, cela depuis leur entrevue dont parle Gal 2:1. Cependant cette épître semble moins personnelle que celles à Timothée. Elle est toutefois ornée de quelques passages particulièrement riches et denses. Elle comporte une introduction théologique, un rappel de la mission d’installation d’anciens chargés de contrecarrer les contradictions, et un résumé des exhortations aux fidèles."
+          ]
+        }
+      ]
+    },
+    "ODY1MDI5ZDAt": {
+      "type": "title",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:imt",
+          "content": [
+            "INTRODUCTION À L’ÉPÎTRE À TITE"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "subtype": "usfm:imt3",
+          "content": [
+            "(1 Ti 3:15. 1 Pi 2:15.)"
+          ]
+        }
+      ]
+    },
+    "MjIzNTE4OTAt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:s",
+          "content": [
+            "Adresse et salutation"
+          ]
+        }
+      ]
+    },
+    "NWJmZjU2MWUt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:r",
+          "content": [
+            "V. 1-4: cf. 1 Ti 1:1, 2. 2 Pi 1:1-4."
+          ]
+        }
+      ]
+    },
+    "ZDE0ZTAzMDct": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "YTg2NGJkNzkt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.2 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "No 23:19. 2 Ti 2:13."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "YTg2NGJkNzkt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "a"
+          ]
+        }
+      ]
+    },
+    "MmFiY2IzNWUt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "YWNjZTc4ZDct"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.2 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ro 16:25. Ép 1:9; 3:9. Col 1:26. 1 Pi 1:20."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "YWNjZTc4ZDct": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "b"
+          ]
+        }
+      ]
+    },
+    "MjFmNGU2ZDgt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NjU4NDE0MDYt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.3 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ac 20:24. Ga 1:1."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NjU4NDE0MDYt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "c"
+          ]
+        }
+      ]
+    },
+    "NDI4ZjU5MTYt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "YTAyYTdiM2Yt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.4 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "2 Co 2:12; 7:14; 8:6, 16. Ga 2:3."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "YTAyYTdiM2Yt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "d"
+          ]
+        }
+      ]
+    },
+    "ODcyMTZjNDkt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "Yzk2OTY2M2Et"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.4 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ép 1:2. Col 1:2. 2 Ti 1:2. 1 Pi 1:2."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Yzk2OTY2M2Et": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "e"
+          ]
+        }
+      ]
+    },
+    "OTUyNmJkOGQt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:s",
+          "content": [
+            "Tite chargé d’organiser l’Église de Crète, d’établir des conducteurs fidèles, et de lutter contre ceux qui enseignent de fausses doctrines"
+          ]
+        }
+      ]
+    },
+    "NmVkNzgzMGEt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:r",
+          "content": [
+            "V. 5-9: cf. 1 Ti 3:1-7. 1 Pi 5:1-4."
+          ]
+        }
+      ]
+    },
+    "MDgxZTViNTgt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODA2MGY3Yjgt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.5 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "2 Ti 2:2."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODA2MGY3Yjgt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "f"
+          ]
+        }
+      ]
+    },
+    "YTYyMTk0M2Qt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NzI2Njk4NzIt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.6 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 3:2."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NzI2Njk4NzIt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "g"
+          ]
+        }
+      ]
+    },
+    "YzQ1YzgxNjkt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ZGQxZTExOTIt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.7 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Mt 24:45. 1 Co 4:1. 1 Ti 3:15."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ZGQxZTExOTIt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "h"
+          ]
+        }
+      ]
+    },
+    "NTEyYWMwMTgt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NzhmZmQwMDkt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.7 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Lé 10:9. Ép 5:18."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NzhmZmQwMDkt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "i"
+          ]
+        }
+      ]
+    },
+    "MzVlOGE1N2It": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NDg5YTVmMDct"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.7 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 3:3. 1 Pi 5:2."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NDg5YTVmMDct": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "j"
+          ]
+        }
+      ]
+    },
+    "NjY0MzgxY2It": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NzBiYmRlMzYt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.8 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 3:2."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NzBiYmRlMzYt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "k"
+          ]
+        }
+      ]
+    },
+    "MzhmZDMwYmUt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:r",
+          "content": [
+            "V. 10-16: cf. Ro 16:17, 18. 1 Ti 1:3-7. 2 Ti 2:16-18, 23-26; 3:5-9."
+          ]
+        }
+      ]
+    },
+    "M2NlZDZmNmEt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ZjVkODJmMjMt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.10 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ac 15:1."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ZjVkODJmMjMt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "l"
+          ]
+        }
+      ]
+    },
+    "ZWM2YWM2OTQt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODdhZTQzMjIt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.11 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Mt 23:14. 2 Ti 3:6."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODdhZTQzMjIt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "m"
+          ]
+        }
+      ]
+    },
+    "MDE5NzMyODkt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "YWE5ZjMxYzYt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.14 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "És 29:13. Mt 15:9. Col 2:22. 1 Ti 1:4; 4:7; 6:20."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "YWE5ZjMxYzYt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "n"
+          ]
+        }
+      ]
+    },
+    "NDgxZjg3ODYt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODNjY2Y0MDAt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.15 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Mt 15:11. Ac 10:15. Ro 14:20."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODNjY2Y0MDAt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "o"
+          ]
+        }
+      ]
+    },
+    "NmFiM2I4MGQt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODE1ZDdmOGQt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "1.15 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Mt 23:25. Ro 14:23."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODE1ZDdmOGQt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "p"
+          ]
+        }
+      ]
+    },
+    "ZGY2MjI3ZmMt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:s",
+          "content": [
+            "Comment Tite doit exhorter les vieillards, les femmes, les jeunes hommes, les serviteurs, et quel exemple il doit donner lui-même"
+          ]
+        }
+      ]
+    },
+    "OGIwNmVkOWUt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:r",
+          "content": [
+            "V. 1-10: cf. (1 Ti 2:9-15. 1 Pi 3:1-6.) Ps 119:9. (Ép 6:5-8. 1 Pi 2:18-20.)"
+          ]
+        }
+      ]
+    },
+    "Mzk3YjcxOGMt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "MzRjZjFiN2Yt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.3 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 2:9. 1 Pi 3:3."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MzRjZjFiN2Yt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "a"
+          ]
+        }
+      ]
+    },
+    "MWNjMGE0YzUt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "YWNkY2VkN2It"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.3 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 5:13."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "YWNkY2VkN2It": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "b"
+          ]
+        }
+      ]
+    },
+    "NmE5NWY5MzMt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ZTQzYzg5YzIt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.5 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ge 3:16. 1 Co 14:34. Ép 5:22. Col 3:18. 1 Pi 3:1."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ZTQzYzg5YzIt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "c"
+          ]
+        }
+      ]
+    },
+    "N2U3ZjQ5OTAt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ZTViMmE2MTYt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.7 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 4:12. 1 Pi 5:3."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ZTViMmE2MTYt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "d"
+          ]
+        }
+      ]
+    },
+    "OTc3NWZjZjMt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NjViMWFmNTAt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.8 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Pi 2:12, 15; 3:16."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NjViMWFmNTAt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "e"
+          ]
+        }
+      ]
+    },
+    "OTRkMzJkZWMt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "MGRlMmJjMTEt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.9 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ép 6:5. Col 3:22. 1 Ti 6:1, 2. 1 Pi 2:18."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MGRlMmJjMTEt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "f"
+          ]
+        }
+      ]
+    },
+    "N2U4Y2QyNjMt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:s",
+          "content": [
+            "La grâce de Dieu manifestée: ce qu’elle enseigne, et ce que Tite doit enseigner"
+          ]
+        }
+      ]
+    },
+    "ZGI3NjAwYTct": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:r",
+          "content": [
+            "V. 11-15: cf. 1 Pi 1:10-21. (Ro 12:1, 2. 1 Co 6:20. 1 Jn 3:1-3.)"
+          ]
+        }
+      ]
+    },
+    "MjdjMjY1MTQt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "MjIxZGM4YzUt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.12 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ép 1:4. Col 1:22. 2 Ti 1:9."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MjIxZGM4YzUt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "g"
+          ]
+        }
+      ]
+    },
+    "NjY2ZDZiNDAt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NTc3YWE2NTUt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.12 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Jn 2:16."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NTc3YWE2NTUt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "h"
+          ]
+        }
+      ]
+    },
+    "ZjkyNTU2ZWQt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ZjJmYjk2YjUt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.13 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Co 1:7. Ph 3:20."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ZjJmYjk2YjUt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "i"
+          ]
+        }
+      ]
+    },
+    "NGNhNzc0NWMt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODI1N2Q1MGQt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.14 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ga 1:4; 2:20. Ép 5:2. Hé 9:14."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODI1N2Q1MGQt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "j"
+          ]
+        }
+      ]
+    },
+    "YzU2MGVjOTgt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NWFjMDAzM2Et"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.14 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ép 2:10."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NWFjMDAzM2Et": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "k"
+          ]
+        }
+      ]
+    },
+    "NDBiOTc5OTgt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "MDQxODE0OTgt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "2.15 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 4:12."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MDQxODE0OTgt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "l"
+          ]
+        }
+      ]
+    },
+    "N2NmZWFhY2Ut": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:r",
+          "content": [
+            "V. 1-11: cf. 1 Pi 2:13-16. (Ép 2:1-10. Tit 2:11-15.) Ro 16:17, 18."
+          ]
+        }
+      ]
+    },
+    "MzI5NDFjMmEt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODRhMjI3Njct"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.1 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ro 13:1, etc. 1 Pi 2:13."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODRhMjI3Njct": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "a"
+          ]
+        }
+      ]
+    },
+    "Y2ZmMmM4ZDIt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NWRiMmUyZTAt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.2 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ph 4:5."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NWRiMmUyZTAt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "b"
+          ]
+        }
+      ]
+    },
+    "YzFlNjUyNTAt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "YmVmOGE3YWMt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.2 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "2 Ti 2:24, 25."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "YmVmOGE3YWMt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "c"
+          ]
+        }
+      ]
+    },
+    "NjQ0MmZjNjct": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODllNDRiZTAt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.3 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Co 6:11. Ép 2:1. Col 3:7. 1 Pi 4:3."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODllNDRiZTAt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "d"
+          ]
+        }
+      ]
+    },
+    "YjlhNzI2ZTYt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ZDcxNzVkZDgt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.5 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ép 1:4. 2 Ti 1:9."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ZDcxNzVkZDgt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "e"
+          ]
+        }
+      ]
+    },
+    "OWFiMmY0NWUt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ZmY1NThhMzct"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.5 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ro 3:20, 28; 4:2, 6; 9:11; 11:6. Ga 2:16. Ép 2:9."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ZmY1NThhMzct": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "f"
+          ]
+        }
+      ]
+    },
+    "NmI2ZmU0MmEt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "NzkzOTgxZDgt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.5 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ac 15:11. Ép 2:4."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "NzkzOTgxZDgt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "g"
+          ]
+        }
+      ]
+    },
+    "NDFlZmMwMWMt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "OGFjNzcxZWYt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.6 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Éz 36:25."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "OGFjNzcxZWYt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "h"
+          ]
+        }
+      ]
+    },
+    "Y2U3MzcyYWUt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "MDAzMzQyZTct"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.8 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "1 Ti 1:4; 4:7; 6:20. Tit 1:14."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "MDAzMzQyZTct": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "i"
+          ]
+        }
+      ]
+    },
+    "ODlmZTMzNjEt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "OWI1Y2Y2Zjct"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.10 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Mt 18:17. Ro 16:17. 2 Th 3:6. 2 Ti 3:5. 2 Jn v. 10."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "OWI1Y2Y2Zjct": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "j"
+          ]
+        }
+      ]
+    },
+    "MjM3OWNiNDkt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:s",
+          "content": [
+            "Recommandations particulières. Salutations"
+          ]
+        }
+      ]
+    },
+    "OTJiMWViY2Mt": {
+      "type": "heading",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:r",
+          "content": [
+            "V. 12-15: cf. Jn 15:8. 1 Co 16:20-24."
+          ]
+        }
+      ]
+    },
+    "NzBmNjI5ZTQt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "YTFlMDg5MmMt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.12 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ac 20:4. Ép 6:21. 2 Ti 4:12."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "YTFlMDg5MmMt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "k"
+          ]
+        }
+      ]
+    },
+    "OTZlNTdiMWEt": {
+      "type": "xref",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            {
+              "type": "graft",
+              "subtype": "note_caller",
+              "target": "ODQ1N2E2YWMt"
+            },
+            " ",
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xo",
+              "content": [
+                "3.13 "
+              ]
+            },
+            {
+              "type": "wrapper",
+              "subtype": "usfm:xt",
+              "content": [
+                "Ac 18:24. 1 Co 1:12."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ODQ1N2E2YWMt": {
+      "type": "note_caller",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "subtype": "usfm:x",
+          "content": [
+            "l"
+          ]
+        }
+      ]
+    }
+  },
+  "main_sequence_id": "OTMxNzAwODMt"
+}

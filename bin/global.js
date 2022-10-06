@@ -8,7 +8,7 @@ program
     .option('-c, --config <path...>', 'paths to the config files')
     .option('-p, --perf', 'output a perf file instead of an usfm file')
     .option('-h, --hashbylemma <path>', 'output a perf file instead of an usfm file')
-    .option('-v, --verbose', 'verbose');
+    .option('-v, --verbose', 'verbose')
 
 program.parse();
 
