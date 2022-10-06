@@ -54,6 +54,10 @@ module.exports.PtxHandler = class PtxHandler {
         return this.versesInchapters[iChap];
     }
 
+    getNbWordsInVerses(iChap, iVer) {
+        return this.arrayPtx[iChap][iVer].length;
+    }
+
     startParsing() {
         let target = null;
         let source = null;
@@ -77,7 +81,7 @@ module.exports.PtxHandler = class PtxHandler {
             }
 
             if(this.arrayPtx[chapter][verse] == undefined) {
-                this.arrayPtx[chapter][verse] = [];
+                this.arrayPtx[chapter][verse] = [null];
                 this.versesInchapters[chapter] = 1;
             }
 
@@ -91,7 +95,7 @@ module.exports.PtxHandler = class PtxHandler {
                 "word" : txtWord,
                 "pos" : wordInt,
                 "segment" : target["segment"],
-                "strong" : strong+"0",
+                "strong" : strong,
                 "targetLinkValue" : target["targetLinkValue"],
             };
 
@@ -124,7 +128,6 @@ module.exports.PtxHandler = class PtxHandler {
         let posOccurenceStrong = null;
         for(let chapt = 1; chapt <= this.getNbChapters(); chapt++) {
             cnbverses = this.getVersesInchapters(chapt);
-            // console.log("cnbverses :",cnbverses);
             for(let verse = 1; verse <= cnbverses; verse++) {
                 cWords = this.getAllWordsFromChapterVerse(chapt, verse);
                 cRawWords = this.getRawWordsFromChapterVerse(chapt, verse);
@@ -139,9 +142,7 @@ module.exports.PtxHandler = class PtxHandler {
                         cWords[i]["occurencesStrong"] = occurencesStrong.get(cStrongWords[i]);
                     }
                 }
-                // console.log("cWords :",cWords[3]);
                 this.arrayPtx[chapt][verse] = cWords;
-                // return;
             }
         }
     }

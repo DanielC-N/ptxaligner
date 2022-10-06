@@ -4,7 +4,6 @@ import Axios from "axios";
 import pipelines from '../data/pipelines';
 import utils from "./utils/utils";
 import glWordsForLemma from './utils/gl_words_for_lemma';
-// const PTX = require("../src/utils/utils").PtxHandler;
 
 const path = require("path");
 const fse = require("fs-extra");
@@ -23,15 +22,9 @@ async function getDocumentHttp(addr) {
 }
 
 module.exports = async function ptxaligner(rpath, outputperf=false, verbose=false, hashByLemma=false, pathhash="") {
+    const pk = new ProskommaInterface();
     const resolvedPath = path.resolve(rpath);
     const config = JSON.parse(fse.readFileSync(resolvedPath).toString());
-
-    let myPTX = new utils.PtxHandler(config);
-    myPTX.startParsing();
-    await utils.saveFile(JSON.stringify(myPTX.getArrayPtx(), null, " "), "PARSED_PTX.json");
-
-    return;
-    const pk = new ProskommaInterface();
     const nameFile = resolvedPath.split("/").pop().split(".")[0];
     const filename = `./better_alignedtext_${nameFile}`;
 

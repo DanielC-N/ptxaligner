@@ -4,7 +4,10 @@
     "type": "Inputs",
     "inputs": {
       "greek_usfm": "text",
-      "greek_selectors": "json"
+      "greek_selectors": "json",
+      "selectors_greek": "json",
+      "selectors_target_lang": "json",
+      "ptx": "json"
     }
   },
   {
@@ -34,6 +37,31 @@
   },
   {
     "id": 2,
+    "title": "target lang USFM to PERF",
+    "name": "usfm2perf",
+    "type": "Transform",
+    "inputs": [
+      {
+        "name": "usfm",
+        "type": "text",
+        "source": "Input target_lang_usfm"
+      },
+      {
+        "name": "selectors",
+        "type": "json",
+        "source": "Input selectors_target_lang"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "perf",
+        "type": "json"
+      }
+    ],
+    "description": "USFM=>PERF: Conversion via Proskomma"
+  },
+  {
+    "id": 3,
     "title": "Generate a report from Greek PERF",
     "name": "parseGreekUsfm",
     "type": "Transform",
@@ -53,13 +81,52 @@
     "description": "Generate a detailled occurences greek and lemma report"
   },
   {
+    "id": 4,
+    "title": "Generate alignment from Greek report and PTX",
+    "name": "mergeReport_v2",
+    "type": "Transform",
+    "inputs": [
+      {
+        "name": "perf",
+        "type": "json",
+        "source": "Transform 2 perf"
+      },
+      {
+        "name": "report",
+        "type": "json",
+        "source": "Transform 3 report"
+      },
+      {
+        "name": "PTX",
+        "type": "json",
+        "source": "Input ptx"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "perf",
+        "type": "json"
+      },
+      {
+        "name": "issues",
+        "type": "json"
+      }
+    ],
+    "description": ""
+  },
+  {
     "id": 999,
     "type": "Outputs",
     "outputs": [
       {
-        "name": "report",
+        "name": "perf",
         "type": "json",
-        "source": "Transform 2 report"
+        "source": "Transform 4 perf"
+      },
+      {
+        "name": "perf",
+        "type": "json",
+        "source": "Transform 4 issues"
       }
     ]
   }

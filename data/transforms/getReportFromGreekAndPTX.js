@@ -16,21 +16,6 @@ const handleOccurences = function (arrayWords) {
     return [occurences, posOccurence];
 }
 
-/**
- * 
- * @param {JSON} greekReport JSON report of the usfm greek
- * @param {utils.PtxHandler} ptx parsed PTX class
- */
-function mergeGreekReportAndPTX(greekReport, ptx) {
-    let cnbverses = 0;
-    for(let chapt = 0; chapt < ptx.getNbChapters(); chapt++) {
-        cnbverses = ptx.getVersesInchapters(chapt);
-        for(let verse = 0; verse < cnbverses; verse++) {
-            
-        }
-    }
-}
-
 const makeAlignmentActions = {
     startDocument: [
         {
@@ -42,7 +27,7 @@ const makeAlignmentActions = {
                 workspace.handler.startParsing();
                 mergeGreekReportAndPTX(config.greekReport, workspace.handler);
 
-                
+
 
                 workspace.chapter = 1;
                 workspace.verses = 1;
