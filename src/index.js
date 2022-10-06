@@ -39,5 +39,5 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
 
     await saveFile(output.perf, filename + ".json");
 
-    console.log("File saved as " + filename);
+    console.log("File saved as " + filename + ".json");
 }
