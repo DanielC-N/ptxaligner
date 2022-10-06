@@ -79,7 +79,8 @@ const localToUsfmActions = {
     startParagraph: [
         {
             description: "Output footnote paragraph tag (footnote)",
-            test: ({context}) => context.sequences[0].block.subType === "usfm:f" && context.sequences[0].type === "footnote",
+            test: ({context}) => (context.sequences[0].block.subType === "usfm:f" && context.sequences[0].type === "footnote")
+            || (context.sequences[0].block.subType === "usfm:x" && context.sequences[0].type === "xref"),
             action: ({context, workspace, config}) => {
                 workspace.nestedWrapper = 0;
                 let contextSequence = context.sequences[0];
@@ -88,7 +89,7 @@ const localToUsfmActions = {
         },
         {
             description: "Output footnote note_caller tag (footnote)",
-            test: ({context}) => context.sequences[0].block.subType === "usfm:f",
+            test: ({context}) => context.sequences[0].block.subType === "usfm:f" || context.sequences[0].block.subType === "usfm:x",
             action: ({context, workspace, config}) => {
                 workspace.nestedWrapper = 0;
             }
@@ -110,7 +111,8 @@ const localToUsfmActions = {
     endParagraph: [
         {
             description: "Output footnote paragraph tag (footnote)",
-            test: ({context}) => context.sequences[0].block.subType === "usfm:f" && context.sequences[0].type === "footnote",
+            test: ({context}) => (context.sequences[0].block.subType === "usfm:f" && context.sequences[0].type === "footnote")
+            || (context.sequences[0].block.subType === "usfm:x" && context.sequences[0].type === "xref"),
             action: ({context, workspace, config}) => {
                 let contextSequence = context.sequences[0];
                 workspace.usfmBits.push(`\\${oneifyTag(contextSequence.block.subType.split(':')[1])}*`);
@@ -118,7 +120,7 @@ const localToUsfmActions = {
         },
         {
             description: "Output footnote note_caller tag (footnote)",
-            test: ({context}) => context.sequences[0].block.subType === "usfm:f",
+            test: ({context}) => context.sequences[0].block.subType === "usfm:f" || context.sequences[0].block.subType === "usfm:x",
             action: ({context, workspace, config}) => {
             }
         },
@@ -147,16 +149,6 @@ const localToUsfmActions = {
             test: () => true,
             action: ({context, workspace}) => {
                 workspace.usfmBits.push(`\\${oneifyTag(context.sequences[0].element.subType.split(':')[1])}-e\\*`);
-            }
-        },
-    ],
-    text: [
-        {
-            description: "Output text",
-            test: () => true,
-            action: ({context, workspace}) => {
-                const text = context.sequences[0].element.text;
-                workspace.usfmBits.push(text);
             }
         },
     ],
