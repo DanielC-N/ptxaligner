@@ -4,13 +4,13 @@
     "type": "Inputs",
     "inputs": {
       "greek_usfm": "text",
-      "selectors_greek": "json"
+      "greek_selectors": "json"
     }
   },
   {
-    "id": 2,
-    "title": "Generate a report from Greek USFM",
-    "name": "parseGreekUsfm",
+    "id": 1,
+    "title": "USFM to PERF",
+    "name": "usfm2perf",
     "type": "Transform",
     "inputs": [
       {
@@ -21,12 +21,32 @@
       {
         "name": "selectors",
         "type": "json",
-        "source": "Input selectors_greek"
+        "source": "Input greek_selectors"
       }
     ],
     "outputs": [
       {
-        "name": "report_greek",
+        "name": "perf",
+        "type": "json"
+      }
+    ],
+    "description": "USFM=>PERF: Conversion via Proskomma"
+  },
+  {
+    "id": 2,
+    "title": "Generate a report from Greek PERF",
+    "name": "parseGreekUsfm",
+    "type": "Transform",
+    "inputs": [
+      {
+        "name": "perf",
+        "type": "json",
+        "source": "Transform 1 perf"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "report",
         "type": "json"
       }
     ],
@@ -37,9 +57,9 @@
     "type": "Outputs",
     "outputs": [
       {
-        "name": "perf",
+        "name": "report",
         "type": "json",
-        "source": "Transform 2 report_greek"
+        "source": "Transform 2 report"
       }
     ]
   }

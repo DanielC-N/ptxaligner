@@ -1,4 +1,5 @@
 import {PerfRenderFromJson, transforms, mergeActions} from 'proskomma-json-tools';
+import utils from '../../src/utils/utils';
 
 
 const handleOccurences = function (arrayWords) {
@@ -28,6 +29,7 @@ const generateGreekReportActions = {
                 workspace.infosGreekWords = [];
                 workspace.greekWordsInVerse = [];
                 workspace.lemmaInVerse = [];
+                workspace.greekWordInfos = {};
                 workspace.greekText = "";
                 workspace.inwrap = true;
                 output.report = [];
@@ -44,21 +46,19 @@ const generateGreekReportActions = {
                 let lemma = elem.atts.lemma[0];
                 let morph = elem.atts["x-morph"];
                 let strong = elem.atts.strong[0].replace(/0$/,"");
-                const infos = {
+                workspace.greekWordInfos = {
                     "chapter": workspace.chapter,
                     "verse": workspace.verse,
                     "wordPos": workspace.wordPos,
                     "strong" : strong,
                     "lemma" : lemma,
                     "morph" : morph,
-                    "word" : workspace.greekText,
+                    "word" : "",
                     "occurence": "",
                     "occurences": "",
                     "occurenceLemma": "",
                     "occurencesLemma": ""
                 };
-                workspace.infosGreekWords.push(infos);
-                workspace.greekWordsInVerse.push(workspace.greekText);
                 workspace.lemmaInVerse.push(lemma);
             },
         },
@@ -70,6 +70,10 @@ const generateGreekReportActions = {
             action: ({ workspace }) => {
                 workspace.wordPos += 1;
                 workspace.inwrap = false;
+                workspace.greekWordInfos["word"] = workspace.greekText;
+                workspace.infosGreekWords.push(workspace.greekWordInfos);
+                workspace.greekWordsInVerse.push(workspace.greekText);
+                workspace.greekWordInfos = {};
             }
         }
     ],
@@ -79,7 +83,7 @@ const generateGreekReportActions = {
             test: ({context}) => {
                 return ["chapter", "verses"].includes(context.sequences[0].element.subType);
             },
-            action: ({context, workspace}) => {
+            action: ({context, workspace, output}) => {
                 const element = context.sequences[0].element;
                 if (element.subType === "chapter") {
                     workspace.chapter = element.atts["number"];
@@ -88,24 +92,26 @@ const generateGreekReportActions = {
                 } else if (element.subType === "verses") {
                     let occurences = null;
                     let posOccurence = null;
+                    let occs = null;
+                    let i = 0;
                     if(workspace.greekWordsInVerse[0] !== undefined && workspace.verse !== 0) {
                         [occurences, posOccurence] = handleOccurences(workspace.greekWordsInVerse);
-                        for(let i = 0; i < workspace.greekWordsInVerse.length; i++) {
-                            let occs = occurences.get(workspace.greekWordsInVerse[i]);
-                            workspace.infosGreekWords["occurence"] = posOccurence;
-                            workspace.infosGreekWords["occurences"] = occs;
+                        for(i = 0; i < workspace.greekWordsInVerse.length; i++) {
+                            occs = occurences.get(workspace.greekWordsInVerse[i]);
+                            workspace.infosGreekWords[i]["occurence"] = posOccurence[i];
+                            workspace.infosGreekWords[i]["occurences"] = occs;
                         }
                     }
                     if(workspace.lemmaInVerse[0] !== undefined && workspace.verse !== 0) {
                         [occurences, posOccurence] = handleOccurences(workspace.lemmaInVerse);
-                        for(let i = 0; i < workspace.greekWordsInVerse.length; i++) {
-                            let occs = occurences.get(workspace.lemmaInVerse[i]);
-                            workspace.infosGreekWords["occurenceLemma"] = posOccurence;
-                            workspace.infosGreekWords["occurencesLemma"] = occs;
+                        for(i = 0; i < workspace.lemmaInVerse.length; i++) {
+                            occs = occurences.get(workspace.lemmaInVerse[i]);
+                            workspace.infosGreekWords[i]["occurenceLemma"] = posOccurence[i];
+                            workspace.infosGreekWords[i]["occurencesLemma"] = occs;
                         }
                     }
-                    workspace.verse = element.atts["number"];
                     output.report[workspace.chapter][workspace.verse] = workspace.infosGreekWords;
+                    workspace.verse = element.atts["number"];
                     workspace.infosGreekWords = [];
                     workspace.greekWordsInVerse = [];
                     workspace.lemmaInVerse = [];
@@ -126,19 +132,10 @@ const generateGreekReportActions = {
                 }
             }
         }
-    ],
-    endDocument: [
-        {
-            description: "Build output",
-            test: () => true,
-            action: ({workspace, output}) => {
-                output.report = workspace.handler.getArrayPtx();
-            }
-        },
-    ],
+    ]
 };
 
-const makeReportGreek = function ({PTX, perf}) {
+const makeReportGreek = function ({perf}) {
     // console.log("getRawStringFromChapterVerse(1, 1) : ", handler.getRawStringFromChapterVerse(1, 1));
     const cl = new PerfRenderFromJson(
         {
@@ -147,31 +144,25 @@ const makeReportGreek = function ({PTX, perf}) {
         }
     );
     const output = {};
-    cl.renderDocument({docId: "", config: {PTX}, output});
-    // utils(JSON.stringify(output.report,null, " "));
+    cl.renderDocument({docId: "", config: {}, output});
     return {report: output.report};
 }
 
 const parseGreekUsfm = {
     name: "parseGreekUsfm",
     type: "Transform",
-    description: "PERF=>JSON: Generates alignment report",
+    description: "Generate report from greek perf informations",
     inputs: [
         {
             name: "perf",
             type: "json",
-            source: ""
-        },
-        {
-            name: "PTX",
-            type: "text",
             source: ""
         }
     ],
     outputs: [
         {
             name: "report",
-            type: "json",
+            type: "json"
         }
     ],
     code: makeReportGreek

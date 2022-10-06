@@ -1,173 +1,6 @@
 import {PerfRenderFromJson, transforms, mergeActions} from 'proskomma-json-tools';
 import utils from '../../src/utils/utils';
 
-
-
-class Ptxhandler {
-    constructor(PTX) {
-        this.PTX = JSON.parse(JSON.stringify(PTX));
-        this.nbChapters = 0;
-        this.versesInchapters = [];
-        this.wordstotal = 0;
-        this.arrayPtx = [];
-    }
-    getPTX() {
-        return this.PTX;
-    }
-
-    getArrayPtx() {
-        return this.arrayPtx;
-    }
-
-    startParsing() {
-        let target = null;
-        let source = null;
-        let chapter = null;
-        let verse = null;
-        let wordInt = null;
-        let txtWord = "";
-        let strong = "";
-        for (let metaWord of this.PTX) {
-            target = metaWord["target"];
-            source = metaWord["source"];
-            chapter = source["chapter"];
-            verse = source["verse"];
-            wordInt = target["word"];
-            txtWord = source["glWord"];
-            strong = source["strong"];
-
-            if(this.arrayPtx[chapter] == undefined) {
-                this.arrayPtx[chapter] = [];
-                this.nbChapters += 1;
-            }
-            if(this.arrayPtx[chapter][verse] == undefined) {
-                this.versesInchapters[chapter-1] = 1;
-                this.arrayPtx[chapter][verse] = [];
-            } else {
-                this.versesInchapters[chapter-1] += 1;
-            }
-
-            this.arrayPtx[chapter][verse][wordInt] = {
-                "chapter" : chapter,
-                "verse" : verse,
-                "word" : txtWord,
-                "pos" : wordInt,
-                "segment" : target["segment"],
-                "strong" : strong+"0",
-                "targetLinkValue" : target["targetLinkValue"],
-            };
-            this.wordstotal++;
-        }
-    }
-
-    /**
-     * 
-     * @param {Integer} chapter wanted chapter
-     * @param {Integer} verse wanted verse
-     * @param {Integer} word wanted word
-     * @returns if the chapter, verse and word exist, return True, else False
-     */
-    checkAllDimensions(chapter, verse, word) {
-        return this.arrayPtx[chapter] !== undefined
-            && this.arrayPtx[chapter][verse] !== undefined
-            && this.arrayPtx[chapter][verse][word] !== undefined;
-    }
-
-    /**
-     * 
-     * @param {string(int)} chapter 
-     * @param {string} verse 
-     * @returns {[string]}
-     */
-    getAllWordsFromChapterVerse(chapter, verse) {
-        let words = [];
-        for (let metaWord of this.arrayPtx[chapter][verse]) {
-            words.push(metaWord);
-        }
-        return words;
-    }
-
-    /**
-     * 
-     * @param {string(int)} chapter 
-     * @param {string} verse 
-     * @returns {[string]}
-     */
-     getRawWordsFromChapterVerse(chapter, verse) {
-        let words = [];
-        for (let metaWord of this.arrayPtx[chapter][verse]) {
-            words.push(metaWord["word"]);
-        }
-        return words;
-    }
-
-    /**
-     * 
-     * @param {string(int)} chapter 
-     * @param {string} verse 
-     * @returns {string}
-     */
-     getRawStringFromChapterVerse(chapter, verse) {
-        let words = "";
-        for (let i = 1; i <= this.versesInchapters[chapter]; i++) {
-            words = words + " " + this.arrayPtx[chapter][verse][i]["word"];
-        }
-        return words;
-    }
-
-    getSingleWordFromChapterVerse(chapter, verse, word) {
-        if(this.checkAllDimensions(chapter, verse, word)) {
-            return this.arrayPtx[chapter][verse][word];
-        }
-        return {};
-    }
-
-    getStrong(chapter, verse, word) {
-        if(this.checkAllDimensions(chapter, verse, word)) {
-            let cWord = this.arrayPtx[chapter][verse][word];
-            if(cWord === undefined) {
-                return "";
-            }
-            return cWord["strong"];            
-        }
-        return "";
-    }
-
-    getTargetLinkValue(chapter, verse, word) {
-        if(this.checkAllDimensions(chapter, verse, word)) {
-            return this.arrayPtx[chapter][verse][word]["targetLinkValue"] ?? null;
-        }
-        return null;
-    }
-
-    addInfosToWord(chapter, verse, word, key, info) {
-        if(this.checkAllDimensions(chapter, verse, word)) {
-            if(this.arrayPtx[chapter][verse][word] === undefined) {
-                this.addWord(chapter, verse, word);
-            }
-            this.arrayPtx[chapter][verse][word][key] = info;
-        }
-    }
-
-    addWord(chapter, verse, wordInt, infos=null) {
-        if(this.checkAllDimensions(chapter, verse, wordInt)) {
-            this.arrayPtx[chapter][verse][wordInt] = {
-                ...infos,
-                "chapter" : parseInt(chapter),
-                "verse" : parseInt(verse),
-                "pos" : wordInt
-            };
-        }
-    }
-
-    getFrenchWord(chapter, verse, word) {
-        if(this.checkAllDimensions(chapter, verse, word)) {
-            return this.arrayPtx[chapter][verse][word]["word"] ?? "";
-        }
-        return "";
-    }
-}
-
 const handleOccurences = function (arrayWords) {
     let len = arrayWords.length;
     let occurences = new Map();
@@ -183,15 +16,34 @@ const handleOccurences = function (arrayWords) {
     return [occurences, posOccurence];
 }
 
+/**
+ * 
+ * @param {JSON} greekReport JSON report of the usfm greek
+ * @param {utils.PtxHandler} ptx parsed PTX class
+ */
+function mergeGreekReportAndPTX(greekReport, ptx) {
+    let cnbverses = 0;
+    for(let chapt = 0; chapt < ptx.getNbChapters(); chapt++) {
+        cnbverses = ptx.getVersesInchapters(chapt);
+        for(let verse = 0; verse < cnbverses; verse++) {
+            
+        }
+    }
+}
+
 const makeAlignmentActions = {
     startDocument: [
         {
             description: "Set up state variables and output",
             test: () => true,
-            action: ({config, workspace, output}) => {
+            action: ({config, workspace}) => {
                 const { PTX } = config;
-                workspace.handler = new Ptxhandler(PTX);
+                workspace.handler = new utils.PtxHandler(PTX);
                 workspace.handler.startParsing();
+                mergeGreekReportAndPTX(config.greekReport, workspace.handler);
+
+                
+
                 workspace.chapter = 1;
                 workspace.verses = 1;
                 workspace.wordPos = 1;
