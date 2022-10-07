@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import PipelineHandler from "pipeline-handler";
 import ProskommaInterface from "./classes/ProskommaInterface";
 import Axios from "axios";
@@ -6,15 +5,6 @@ import pipelines from "../data/pipelines";
 import transforms from "../data/transforms";
 import utils from "./utils/utils";
 import glWordsForLemma from "./utils/gl_words_for_lemma";
-=======
-import PipelineHandler from 'pipeline-handler';
-import ProskommaInterface from './classes/ProskommaInterface';
-import Axios from "axios";
-import pipelines from '../data/pipelines';
-import transforms from '../data/transforms';
-import utils from "./utils/utils";
-import glWordsForLemma from './utils/gl_words_for_lemma';
->>>>>>> main
 
 const path = require("path");
 const fse = require("fs-extra");
@@ -47,11 +37,11 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const numbook = config.numbook;
 
     verbose && console.log("Retrieving greek usfm... ");
-    await pk.addDocumentHttp(addr_greek, selectors_greek.lang, selectors_greek.abbr);
+    await pk.addDocumentHttp(addr_greek, greek_selectors.lang, greek_selectors.abbr);
     verbose && console.log("Done");
 
-    verbose && console.log("Retrieving target lang usfm... ", selectors_target_lang.lang);
-    await pk.addDocumentHttp(addr_target_lang, selectors_target_lang.lang, selectors_target_lang.abbr);
+    verbose && console.log("Retrieving target lang usfm... ", target_lang_selectors.lang);
+    await pk.addDocumentHttp(addr_target_lang, target_lang_selectors.lang, target_lang_selectors.abbr);
     verbose && console.log("Done");
 
     verbose && console.log("Retrieving ptx... ");
@@ -63,11 +53,11 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
 
     verbose && console.log("running alignmentPipeline... ");
     let output = await pipeline.runPipeline("alignmentPipeline_LSG1910", {
-        greek_usfm: pk.getUsfm(selectors_greek.lang + "_" + selectors_greek.abbr),
-        target_lang_usfm: pk.getUsfm(selectors_target_lang.lang + "_" + selectors_target_lang.abbr),
+        greek_usfm: pk.getUsfm(greek_selectors.lang + "_" + greek_selectors.abbr),
+        target_lang_usfm: pk.getUsfm(target_lang_selectors.lang + "_" + target_lang_selectors.abbr),
         ptx: ptx_titus,
-        selectors_greek: selectors_greek,
-        selectors_target_lang: selectors_target_lang,
+        selectors_greek: greek_selectors,
+        selectors_target_lang: target_lang_selectors,
         numbook: numbook,
         jsonlsg: jsonlsg
     });
