@@ -4,7 +4,7 @@ const ptxaligner = require('../dist/main.js');
 const { program } = require('commander');
 
 program
-    .version("1.2.0")
+    .version("1.3.0")
     .option('-c, --config <path...>', 'paths to the config files')
     .option('-p, --perf', 'output a perf file instead of an usfm file')
     .option('-h, --hashbylemma <path>', 'output a perf file instead of an usfm file')

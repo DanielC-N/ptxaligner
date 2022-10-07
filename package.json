@@ -1,6 +1,6 @@
 {
   "name": "ptxaligner",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "a command line tool to pre-align PTX files with a greek usfm and another usfm from the desired language, into one pre-aligned usfm.",
   "source": "src/index.js",
   "main": "dist/main.js",
