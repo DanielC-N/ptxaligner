@@ -84,48 +84,55 @@ const dictbib = {
 }
 
 module.exports.parseLSG = function parseLSG(rpath) {
+    let resolvedPath = null;
+    let bibleLSG = null;
+    let arrBible = "";
     try {
-        const resolvedPath = path.resolve(rpath);
-        const bibleLSG = fse.readFileSync(resolvedPath).toString();
-        let arrBible = bibleLSG.split("\n");
-        let outputJson = {};
-        let arrLine = [];
-        let code = "";
-        let bookCode = "";
-        let sent = "";
-        // let book = dictbib[bookCode];
-        let words = [];
-
-        let even = "";
-        let newTab = {};
-        // const punct = new RegExp("[\w\d\s]+");
-
-        arrBible.forEach(line => {
-            arrLine = line.split("|");
-            code = arrLine[0];
-            bookCode = code.substring(0,2);
-            sent = arrLine[1];
-            words = sent.split(/(<em>\d+<\/em>)/g);
-
-            words.forEach((word, i) => {
-                if(i%2 === 0){
-                    even = word.replace(/([\s’'.,:!?; -]+)$|^([\s’'.,:!?; -]+)|([’'.,:!?;-]+)/g, "");
-                } else {
-                    if(even !== "") newTab[word.match(/\d+/)[0]] = even;
-                }
-            });
-
-            outputJson[code.slice(0,-1)] = newTab;
-            newTab = {};
-            even = "";
-        });
-
-        // console.log(outputJson["56003007"]);
-        
-        fse.outputFile(path.resolve("./bible_LSG.json"), JSON.stringify(outputJson));
+        resolvedPath = path.resolve(rpath);
+        bibleLSG = fse.readFileSync(resolvedPath).toString();
+        arrBible = bibleLSG.split("\n");
     } catch (err) {
         throw new Error("Failed to load the file", err)
     }
+    let outputJson = {};
+    let arrLine = [];
+    let code = "";
+    let bookCode = "";
+    let sent = "";
+    // let book = dictbib[bookCode];
+    let words = [];
+    let mw = "";
+
+    let even = "";
+    let newTab = [];
+    // const punct = new RegExp("[\w\d\s]+");
+
+    arrBible.forEach(line => {
+        arrLine = line.split("|");
+        code = arrLine[0];
+        bookCode = code.substring(0,2);
+        sent = arrLine[1];
+        words = sent.split(/(<em>\d+<\/em>)/g);
+
+        words.forEach((word, i) => {
+            if(i%2 === 0){
+                even = word.replace(/([\s’'.,:!?; -]+)$|^([\s’'.,:!?; -]+)|([’'.,:!?;-]+)/g, "");
+            } else {
+                if(even !== "") {
+                    mw = word.match(/\d+/)[0];
+                    if(mw) newTab.push({strong : mw, expr : even});
+                }
+            }
+        });
+
+        outputJson[code.slice(0,-1)] = newTab;
+        newTab = [];
+        even = "";
+    });
+
+    // console.log(outputJson["56003007"]);
+    
+    fse.outputFile(path.resolve("./bible_LSG.json"), JSON.stringify(outputJson));
 }
 
 module.exports.handleOccurences = function handleOccurences(arrayWords) {

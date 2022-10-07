@@ -5,6 +5,7 @@ import perf2usfm from "./perf2usfm";
 import parseGreekUsfm from "./parseGreekUsfm";
 import calculateUsfmChapterPositions from "./calculateUsfmChapterPositions";
 import parseGreekUsfm from "./parseGreekUsfm";
+import makeAlignment_LSG from "./makeAlignment_LSG";
 
 export default {
     identity,
@@ -14,4 +15,5 @@ export default {
     parseGreekUsfm,
     calculateUsfmChapterPositions,
     parseGreekUsfm,
+    makeAlignment_LSG
 }

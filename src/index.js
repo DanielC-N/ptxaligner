@@ -49,15 +49,15 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     verbose && console.log("Done");
 
     const pipeline = new PipelineHandler(pipelines, transforms, pk.getInstance(), verbose);
-    const jsonlsg = JSON.parse(fse.readFileSync("../data/LSG1910_bible_strongs/bible_LSGS.json").toString());
+    const jsonlsg = JSON.parse(fse.readFileSync("./bible_LSG.json").toString());
 
     verbose && console.log("running alignmentPipeline... ");
-    let output = await pipeline.runPipeline("alignmentPipeline_LSG1910", {
+    let output = await pipeline.runPipeline("alignmentPipeline_LSG", {
         greek_usfm: pk.getUsfm(greek_selectors.lang + "_" + greek_selectors.abbr),
         target_lang_usfm: pk.getUsfm(target_lang_selectors.lang + "_" + target_lang_selectors.abbr),
-        ptx: ptx_titus,
-        selectors_greek: greek_selectors,
-        selectors_target_lang: target_lang_selectors,
+        ptx: ptx,
+        greek_selectors: greek_selectors,
+        target_lang_selectors: target_lang_selectors,
         numbook: numbook,
         jsonlsg: jsonlsg
     });
