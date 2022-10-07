@@ -116,27 +116,61 @@ const buildnewEndMileStone = function() {
 }
 
 /**
- * 
+ * Merge the two greek report and PTX AND generate an error report of the missing words in the PTX.
  * @param {Object[]} greekReport JSON report of the usfm greek
  * @param {utils.PtxHandler} ptx parsed PTX class
  */
  function mergeGreekReportAndPTX(greekReport, ptx) {
     let cnbverses = 0;
     let cnbwords = 0;
-    let merged = [null];
-    for(let chapt = 1; chapt < greekReport.length; chapt++) {
-        cnbverses = greekReport[chapt].length;
-        merged.push([null]);
-        for(let verse = 1; verse <= cnbverses; verse++) {
-            merged[chapt].push([null]);
-            cnbwords = greekReport[chapt][verse].length;
-            for(let w = 1; w <= cnbwords; w++) {
-                if(w===1) merged[chapt][verse].push([null]);
-                console.log("greekReport[chapt][verse][w] =",greekReport[chapt][verse][w]);
-                return;
-            }
-        }
-    }
+    let merged = [];
+    let ptxWords = null;
+    let ptxWordStrongs = null;
+    let ptxWord = null;
+    let greekWords = null;
+    let errorReport = {};
+    greekReport.forEach((chapt, ic) => {
+        if(!chapt || ic == 0) return;
+        cnbverses = chapt.length;
+        merged[ic] = [];
+        chapt.forEach((verse, iv) => {
+            if(!verse || iv == 0) return;
+            merged[ic][iv] = [];
+            cnbwords = verse.length;
+            ptxWords = ptx.getAllWordsFromChapterVerse(ic, iv);
+            ptxWordStrongs = ptx.getStrongWordsFromChapterVerse(ic, iv);
+            verse.forEach((w, iw) => {
+                if(!w || iw == 0) return;
+                ptxWord = null;
+                // if there are as many of the same word (strong) in the ptx and the greek so...
+                if(ptxWordStrongs && ptxWordStrongs.filter(x => x===w["strong"]).length === w["occurencesLemma"]) {
+                    ptxWords.forEach((pw, ipw) => {
+                        if(!pw || ipw == 0) return;
+                        if(pw["strong"] === w["strong"]
+                            && pw["occurenceStrong"] === w["occurenceLemma"]
+                            && pw["occurencesStrong"] === w["occurencesLemma"]) {
+                            ptxWord = pw;
+                            return;
+                        }
+                    });
+                    if(ptxWord) {
+                        merged[ic][iv][iw] = w;
+                        merged[ic][iv][iw]["tgoccurence"] = ptxWord["occurence"];
+                        merged[ic][iv][iw]["tgoccurences"] = ptxWord["occurences"];
+                        merged[ic][iv][iw]["targetLinkValue"] = ptxWord["targetLinkValue"];
+                        merged[ic][iv][iw]["segment"] = ptxWord["segment"];
+                        merged[ic][iv][iw]["targetword"] = ptxWord["word"];
+                        merged[ic][iv][iw]["normalized"] = ptxWord["normalized"];
+                    }
+                } else {
+                    // TODO enhance the report
+                    errorReport[ic+""+iv+""+iw+""] = greekReport[ic][iv][iw];
+                    return;
+                }
+            });
+        });
+    });
+    return [merged, errorReport];
 }
 
 const makeAlignmentActionsv2 = {
@@ -144,11 +178,15 @@ const makeAlignmentActionsv2 = {
         {
             description: "setup",
             test: () => true,
-            action: ({ workspace, config }) => {
+            action: ({ workspace, config, output }) => {
                 const { report, PTX } = config;
                 workspace.handler = new utils.PtxHandler(PTX);
                 workspace.handler.startParsing();
-                mergeGreekReportAndPTX(report, workspace.handler);
+                [workspace.merged, output.issues] = mergeGreekReportAndPTX(report, workspace.handler);
+
+                output.reportgreekptx = structuredClone(workspace.merged);
+
+                console.log(JSON.stringify(output.reportgreekptx,null, "  "))
                 nimportequoi.output == "nimportequoi";
                 workspace.chapter = null;
                 workspace.verses = null;
@@ -400,7 +438,6 @@ const makeAlignmentActionsv2 = {
 };
 
 const mergeReportCodev2 = function ({ perf, report, PTX }) {
-    
     const actions = mergeActions(
         [
             makeAlignmentActionsv2,
@@ -418,8 +455,8 @@ const mergeReportCodev2 = function ({ perf, report, PTX }) {
     return { perf: output.perf }; // identityActions currently put PERF directly in output
 }
 
-const mergeReport_v2 = {
-    name: "mergeReport_v2",
+const makeAlignment_v2 = {
+    name: "makeAlignment_v2",
     type: "Transform",
     description: "PERF=>PERF adds report to verses",
     inputs: [
@@ -445,10 +482,14 @@ const mergeReport_v2 = {
             type: "json"
         },
         {
+            name: "reportgreekptx",
+            type: "json"
+        },
+        {
             name: "issues",
             type: "json"
         }
     ],
     code: mergeReportCodev2
 }
-export default mergeReport_v2;
+export default makeAlignment_v2;

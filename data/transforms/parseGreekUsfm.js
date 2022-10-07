@@ -86,10 +86,88 @@ const generateGreekReportActions = {
             action: ({context, workspace, output}) => {
                 const element = context.sequences[0].element;
                 if (element.subType === "chapter") {
+                    if(element.atts["number"] > 1) {
+                        let occurences = null;
+                        let posOccurence = null;
+                        let occs = null
+                        let i = 0;
+                        if(workspace.greekWordsInVerse[0] !== undefined) {
+                            [occurences, posOccurence] = handleOccurences(workspace.greekWordsInVerse);
+                            for(i = 0; i < workspace.greekWordsInVerse.length; i++) {
+                                occs = occurences.get(workspace.greekWordsInVerse[i]);
+                                workspace.infosGreekWords[i]["occurence"] = posOccurence[i];
+                                workspace.infosGreekWords[i]["occurences"] = occs;
+                            }
+                        }
+                        if(workspace.lemmaInVerse[0] !== undefined) {
+                            [occurences, posOccurence] = handleOccurences(workspace.lemmaInVerse);
+                            for(i = 0; i < workspace.lemmaInVerse.length; i++) {
+                                occs = occurences.get(workspace.lemmaInVerse[i]);
+                                workspace.infosGreekWords[i]["occurenceLemma"] = posOccurence[i];
+                                workspace.infosGreekWords[i]["occurencesLemma"] = occs;
+                            }
+                            output.report[workspace.chapter][workspace.verse] = [null, ...workspace.infosGreekWords];
+                            workspace.infosGreekWords = [];
+                            workspace.greekWordsInVerse = [];
+                            workspace.lemmaInVerse = [];
+                            workspace.frenchWordsInVerse = [];
+                            workspace.wordPos = 1;
+                            workspace.greekTextPosition = 1;
+                        }
+                    }
                     workspace.chapter = element.atts["number"];
-                    workspace.verse = 0;
+                    workspace.verse = 1;
                     output.report[workspace.chapter] = [];
                 } else if (element.subType === "verses") {
+                    let occurences = null;
+                    let posOccurence = null;
+                    let occs = null
+                    let i = 0;
+                    if(workspace.greekWordsInVerse[0] !== undefined) {
+                        [occurences, posOccurence] = handleOccurences(workspace.greekWordsInVerse);
+                        for(i = 0; i < workspace.greekWordsInVerse.length; i++) {
+                            occs = occurences.get(workspace.greekWordsInVerse[i]);
+                            workspace.infosGreekWords[i]["occurence"] = posOccurence[i];
+                            workspace.infosGreekWords[i]["occurences"] = occs;
+                        }
+                    }
+                    if(workspace.lemmaInVerse[0] !== undefined) {
+                        [occurences, posOccurence] = handleOccurences(workspace.lemmaInVerse);
+                        for(i = 0; i < workspace.lemmaInVerse.length; i++) {
+                            occs = occurences.get(workspace.lemmaInVerse[i]);
+                            workspace.infosGreekWords[i]["occurenceLemma"] = posOccurence[i];
+                            workspace.infosGreekWords[i]["occurencesLemma"] = occs;
+                        }
+                        output.report[workspace.chapter][workspace.verse] = [null, ...workspace.infosGreekWords];
+                        workspace.infosGreekWords = [];
+                        workspace.greekWordsInVerse = [];
+                        workspace.lemmaInVerse = [];
+                        workspace.frenchWordsInVerse = [];
+                        workspace.wordPos = 1;
+                        workspace.greekTextPosition = 1;
+                        workspace.verse = element.atts["number"];
+                    }
+                }
+            }
+        },
+    ],
+    text: [
+        {
+            description: "Process ONLY greek texts events",
+            test: () => true,
+            action: ({context, workspace}) => {
+                if(workspace.inwrap) {
+                    workspace.greekText = context.sequences[0].element.text;
+                }
+            }
+        }
+    ],
+    endDocument: [
+        {
+            description: "Build output",
+            test: () => true,
+            action: ({workspace, output}) => {
+                if(workspace.infosGreekWords[0]) {
                     let occurences = null;
                     let posOccurence = null;
                     let occs = null;
@@ -110,29 +188,11 @@ const generateGreekReportActions = {
                             workspace.infosGreekWords[i]["occurencesLemma"] = occs;
                         }
                     }
-                    output.report[workspace.chapter][workspace.verse] = workspace.infosGreekWords;
-                    workspace.verse = element.atts["number"];
-                    workspace.infosGreekWords = [];
-                    workspace.greekWordsInVerse = [];
-                    workspace.lemmaInVerse = [];
-                    workspace.frenchWordsInVerse = [];
-                    workspace.wordPos = 1;
-                    workspace.greekTextPosition = 1;
+                    if(workspace.verse !== 0) output.report[workspace.chapter][workspace.verse] = [null, ...workspace.infosGreekWords];
                 }
             }
         },
     ],
-    text: [
-        {
-            description: "Process ONLY greek texts events",
-            test: () => true,
-            action: ({context, workspace}) => {
-                if(workspace.inwrap) {
-                    workspace.greekText = context.sequences[0].element.text;
-                }
-            }
-        }
-    ]
 };
 
 const makeReportGreek = function ({perf}) {

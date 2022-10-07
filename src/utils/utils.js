@@ -93,6 +93,7 @@ module.exports.PtxHandler = class PtxHandler {
                 "chapter" : chapter,
                 "verse" : verse,
                 "word" : txtWord,
+                "normalized" : txtWord.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase(),
                 "pos" : wordInt,
                 "segment" : target["segment"],
                 "strong" : strong,
@@ -148,7 +149,7 @@ module.exports.PtxHandler = class PtxHandler {
     }
 
     /**
-     * 
+     * Get all the words from a verse but puts "null" values where there's no informations to keep the position of the words
      * @param {string(int)} chapter 
      * @param {string} verse
      * @returns {Object[]}
@@ -158,38 +159,44 @@ module.exports.PtxHandler = class PtxHandler {
         for (let metaWord of this.arrayPtx[chapter][verse]) {
             if(metaWord) {
                 words.push(metaWord);
+            } else {
+                words.push(null);
             }
         }
         return words;
     }
 
     /**
-     * 
+     * Get all the strongs from a verse but puts empty strings where there's no informations
      * @param {string(int)} chapter 
      * @param {string} verse
      * @returns {Object[]}
      */
      getStrongWordsFromChapterVerse(chapter, verse) {
         let words = [];
-        for (let i = 1; i < this.arrayPtx[chapter][verse].length; i++) {
-            if(this.arrayPtx[chapter][verse][i]) {
-                words.push(this.arrayPtx[chapter][verse][i]["strong"]);
+        for (let metaWord of this.arrayPtx[chapter][verse]) {
+            if(metaWord) {
+                words.push(metaWord["strong"]);
+            } else {
+                words.push("");
             }
         }
         return words;
     }
 
     /**
-     * 
+     * Get all the words from a verse but puts empty strings where there's no informations
      * @param {string(int)} chapter 
      * @param {string} verse 
      * @returns {[string]}
      */
      getRawWordsFromChapterVerse(chapter, verse) {
         let words = [];
-        for (let i = 0; i <= this.arrayPtx[chapter][verse].length; i++) {
-            if(this.arrayPtx[chapter][verse][i]) {
-                words.push(this.arrayPtx[chapter][verse][i]["word"]);
+        for (let metaWord of this.arrayPtx[chapter][verse]) {
+            if(metaWord) {
+                words.push(metaWord["word"]);
+            } else {
+                words.push("");
             }
         }
         return words;

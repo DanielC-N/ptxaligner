@@ -5,8 +5,8 @@
     "inputs": {
       "greek_usfm": "text",
       "greek_selectors": "json",
-      "selectors_greek": "json",
-      "selectors_target_lang": "json",
+      "target_lang_usfm": "text",
+      "target_lang_selectors": "json",
       "ptx": "json"
     }
   },
@@ -49,7 +49,7 @@
       {
         "name": "selectors",
         "type": "json",
-        "source": "Input selectors_target_lang"
+        "source": "Input target_lang_selectors"
       }
     ],
     "outputs": [
@@ -83,7 +83,7 @@
   {
     "id": 4,
     "title": "Generate alignment from Greek report and PTX",
-    "name": "mergeReport_v2",
+    "name": "makeAlignment_v2",
     "type": "Transform",
     "inputs": [
       {
@@ -108,6 +108,10 @@
         "type": "json"
       },
       {
+        "name": "reportgreekptx",
+        "type": "json"
+      },
+      {
         "name": "issues",
         "type": "json"
       }
@@ -124,7 +128,12 @@
         "source": "Transform 4 perf"
       },
       {
-        "name": "perf",
+        "name": "reportgreekptx",
+        "type": "json",
+        "source": "Transform 4 reportgreekptx"
+      },
+      {
+        "name": "issues",
         "type": "json",
         "source": "Transform 4 issues"
       }

@@ -29,9 +29,9 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const filename = `./alignedtext_${nameFile}`;
 
     const addr_greek = config.greek_usfm_path;
-    const selectors_greek = config.greek_selectors;
+    const greek_selectors = config.greek_selectors;
     const addr_target_lang = config.raw_usfm_path;
-    const selectors_target_lang = config.raw_usfm_selectors;
+    const target_lang_selectors = config.raw_usfm_selectors;
     const addr_ptx = config.ptx_path;
 
     verbose && console.log("Retrieving greek usfm... ");
@@ -49,17 +49,21 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const pipeline = new PipelineHandler(pk.getInstance(), pipelines);
 
     verbose && console.log("running alignmentPipeline... ");
-    let output = await pipeline.runPipeline("alignmentPipeline", {
+    let output = await pipeline.runPipeline("parseGreekTESTS", {
         greek_usfm: pk.getUsfm("gre_ugnt"),
         target_lang_usfm: pk.getUsfm("fra_ust"),
         ptx: ptx,
-        selectors_greek: selectors_greek,
-        selectors_target_lang: selectors_target_lang
+        greek_selectors: greek_selectors,
+        target_lang_selectors: target_lang_selectors
     });
     verbose && console.log("Done");
 
     if(outputperf) {
         await saveFile(output.perf, filename + ".json");
+    }
+
+    if(output.reportgreekptx) {
+        await saveFile(output.reportgreekptx, "Report_greekptx_merge_" + filename + ".json");
     }
 
     if(hashByLemma || !outputperf) {
