@@ -1,7 +1,8 @@
-import PipelineHandler from './classes/PipelineHandler';
+import PipelineHandler from 'pipeline-handler';
 import ProskommaInterface from './classes/ProskommaInterface';
 import Axios from "axios";
 import pipelines from '../data/pipelines';
+import transforms from '../data/transforms';
 import utils from "./utils/utils";
 import glWordsForLemma from './utils/gl_words_for_lemma';
 
@@ -45,8 +46,8 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     verbose && console.log("Retrieving ptx... ");
     const ptx = await getDocumentHttp(addr_ptx);
     verbose && console.log("Done");
-
-    const pipeline = new PipelineHandler(pk.getInstance(), pipelines);
+    
+    const pipeline = new PipelineHandler(pipelines, transforms, pk.getInstance(), verbose);
 
     verbose && console.log("running alignmentPipeline... ");
     let output = await pipeline.runPipeline("alignmentPipeline", {

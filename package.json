@@ -40,6 +40,7 @@
     "epitelete": "^0.2.6",
     "fs-extra": "^10.1.0",
     "path": "^0.12.7",
+    "pipeline-handler": "^1.1.0",
     "proskomma": "^0.7.15",
     "proskomma-json-tools": "^0.5.6",
     "uw-proskomma": "^0.8.5"
