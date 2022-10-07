@@ -76,7 +76,6 @@ const calculateUsfmChapterPositionsCode = function ({perf}) {
     const cl = new PerfRenderFromJson({srcJson: perf, actions: calculateUsfmChapterPositionsActions});
     const output = {};
     cl.renderDocument({docId: "", config: {maxLength: 60}, output});
-    utils.saveFile(output.report, "reportChapters");
     return {report: output.report};
 }
 

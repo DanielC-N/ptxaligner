@@ -1,22 +1,6 @@
 import {PerfRenderFromJson, transforms, mergeActions} from 'proskomma-json-tools';
 import utils from '../../src/utils/utils';
 
-
-const handleOccurences = function (arrayWords) {
-    let len = arrayWords.length;
-    let occurences = new Map();
-    let posOccurence = [...arrayWords];
-    for(let i = 0; i < len; i++) {
-        if(occurences.has(arrayWords[i]) && arrayWords[i] !== "") {
-            occurences.set(arrayWords[i], occurences.get(arrayWords[i]) + 1);
-        } else {
-            occurences.set(arrayWords[i], 1);
-        }
-        posOccurence[i] = occurences.get(arrayWords[i]);
-    };
-    return [occurences, posOccurence];
-}
-
 const generateGreekReportActions = {
     startDocument: [
         {
@@ -92,7 +76,7 @@ const generateGreekReportActions = {
                         let occs = null
                         let i = 0;
                         if(workspace.greekWordsInVerse[0] !== undefined) {
-                            [occurences, posOccurence] = handleOccurences(workspace.greekWordsInVerse);
+                            [occurences, posOccurence] = utils.handleOccurences(workspace.greekWordsInVerse);
                             for(i = 0; i < workspace.greekWordsInVerse.length; i++) {
                                 occs = occurences.get(workspace.greekWordsInVerse[i]);
                                 workspace.infosGreekWords[i]["occurence"] = posOccurence[i];
@@ -100,7 +84,7 @@ const generateGreekReportActions = {
                             }
                         }
                         if(workspace.lemmaInVerse[0] !== undefined) {
-                            [occurences, posOccurence] = handleOccurences(workspace.lemmaInVerse);
+                            [occurences, posOccurence] = utils.handleOccurences(workspace.lemmaInVerse);
                             for(i = 0; i < workspace.lemmaInVerse.length; i++) {
                                 occs = occurences.get(workspace.lemmaInVerse[i]);
                                 workspace.infosGreekWords[i]["occurenceLemma"] = posOccurence[i];
@@ -124,7 +108,7 @@ const generateGreekReportActions = {
                     let occs = null
                     let i = 0;
                     if(workspace.greekWordsInVerse[0] !== undefined) {
-                        [occurences, posOccurence] = handleOccurences(workspace.greekWordsInVerse);
+                        [occurences, posOccurence] = utils.handleOccurences(workspace.greekWordsInVerse);
                         for(i = 0; i < workspace.greekWordsInVerse.length; i++) {
                             occs = occurences.get(workspace.greekWordsInVerse[i]);
                             workspace.infosGreekWords[i]["occurence"] = posOccurence[i];
@@ -132,7 +116,7 @@ const generateGreekReportActions = {
                         }
                     }
                     if(workspace.lemmaInVerse[0] !== undefined) {
-                        [occurences, posOccurence] = handleOccurences(workspace.lemmaInVerse);
+                        [occurences, posOccurence] = utils.handleOccurences(workspace.lemmaInVerse);
                         for(i = 0; i < workspace.lemmaInVerse.length; i++) {
                             occs = occurences.get(workspace.lemmaInVerse[i]);
                             workspace.infosGreekWords[i]["occurenceLemma"] = posOccurence[i];
@@ -173,7 +157,7 @@ const generateGreekReportActions = {
                     let occs = null;
                     let i = 0;
                     if(workspace.greekWordsInVerse[0] !== undefined && workspace.verse !== 0) {
-                        [occurences, posOccurence] = handleOccurences(workspace.greekWordsInVerse);
+                        [occurences, posOccurence] = utils.handleOccurences(workspace.greekWordsInVerse);
                         for(i = 0; i < workspace.greekWordsInVerse.length; i++) {
                             occs = occurences.get(workspace.greekWordsInVerse[i]);
                             workspace.infosGreekWords[i]["occurence"] = posOccurence[i];
@@ -181,7 +165,7 @@ const generateGreekReportActions = {
                         }
                     }
                     if(workspace.lemmaInVerse[0] !== undefined && workspace.verse !== 0) {
-                        [occurences, posOccurence] = handleOccurences(workspace.lemmaInVerse);
+                        [occurences, posOccurence] = utils.handleOccurences(workspace.lemmaInVerse);
                         for(i = 0; i < workspace.lemmaInVerse.length; i++) {
                             occs = occurences.get(workspace.lemmaInVerse[i]);
                             workspace.infosGreekWords[i]["occurenceLemma"] = posOccurence[i];
@@ -196,7 +180,6 @@ const generateGreekReportActions = {
 };
 
 const makeReportGreek = function ({perf}) {
-    // console.log("getRawStringFromChapterVerse(1, 1) : ", handler.getRawStringFromChapterVerse(1, 1));
     const cl = new PerfRenderFromJson(
         {
             srcJson: perf,

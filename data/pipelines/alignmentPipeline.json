@@ -4,16 +4,16 @@
     "type": "Inputs",
     "inputs": {
       "greek_usfm": "text",
+      "greek_selectors": "json",
       "target_lang_usfm": "text",
-      "selectors_greek": "json",
-      "selectors_target_lang": "json",
+      "target_lang_selectors": "json",
       "ptx": "json"
     }
   },
   {
-    "id": 2,
-    "title": "Generate a report from Greek USFM",
-    "name": "parseGreekUsfm",
+    "id": 1,
+    "title": "USFM to PERF",
+    "name": "usfm2perf",
     "type": "Transform",
     "inputs": [
       {
@@ -24,7 +24,7 @@
       {
         "name": "selectors",
         "type": "json",
-        "source": "Input selectors_greek"
+        "source": "Input greek_selectors"
       }
     ],
     "outputs": [
@@ -33,10 +33,10 @@
         "type": "json"
       }
     ],
-    "description": "Generate a detailled occurences greek and lemma report"
+    "description": "USFM=>PERF: Conversion via Proskomma"
   },
   {
-    "id": 3,
+    "id": 2,
     "title": "target lang USFM to PERF",
     "name": "usfm2perf",
     "type": "Transform",
@@ -49,7 +49,7 @@
       {
         "name": "selectors",
         "type": "json",
-        "source": "Input selectors_target_lang"
+        "source": "Input target_lang_selectors"
       }
     ],
     "outputs": [
@@ -61,9 +61,29 @@
     "description": "USFM=>PERF: Conversion via Proskomma"
   },
   {
+    "id": 3,
+    "title": "Generate a report from Greek PERF",
+    "name": "parseGreekUsfm",
+    "type": "Transform",
+    "inputs": [
+      {
+        "name": "perf",
+        "type": "json",
+        "source": "Transform 1 perf"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "report",
+        "type": "json"
+      }
+    ],
+    "description": "Generate a detailled occurences greek and lemma report"
+  },
+  {
     "id": 4,
-    "title": "merge the PTX infos and the input Report from greek",
-    "name": "getReportFromGreekAndPTX",
+    "title": "Generate alignment from Greek report and PTX",
+    "name": "makeAlignment",
     "type": "Transform",
     "inputs": [
       {
@@ -72,39 +92,23 @@
         "source": "Transform 2 perf"
       },
       {
+        "name": "report",
+        "type": "json",
+        "source": "Transform 3 report"
+      },
+      {
         "name": "PTX",
-        "type": "text",
+        "type": "json",
         "source": "Input ptx"
       }
     ],
     "outputs": [
       {
-        "name": "report",
-        "type": "json"
-      }
-    ],
-    "description": "PERF+PTX=>JSON: Generates alignment report"
-  },
-  {
-    "id": 5,
-    "title": "Merge the target lang usfm and the generated report",
-    "name": "makeAlignment",
-    "type": "Transform",
-    "inputs": [
-      {
         "name": "perf",
-        "type": "json",
-        "source": "Transform 3 perf"
+        "type": "json"
       },
       {
-        "name": "report",
-        "type": "json",
-        "source": "Transform 4 report"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "perf",
+        "name": "reportgreekptx",
         "type": "json"
       },
       {
@@ -112,7 +116,7 @@
         "type": "json"
       }
     ],
-    "description": "PERF=>PERF adds report to verses"
+    "description": ""
   },
   {
     "id": 999,
@@ -121,7 +125,17 @@
       {
         "name": "perf",
         "type": "json",
-        "source": "Transform 5 perf"
+        "source": "Transform 4 perf"
+      },
+      {
+        "name": "reportgreekptx",
+        "type": "json",
+        "source": "Transform 4 reportgreekptx"
+      },
+      {
+        "name": "issues",
+        "type": "json",
+        "source": "Transform 4 issues"
       }
     ]
   }

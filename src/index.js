@@ -26,7 +26,7 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const resolvedPath = path.resolve(rpath);
     const config = JSON.parse(fse.readFileSync(resolvedPath).toString());
     const nameFile = resolvedPath.split("/").pop().split(".")[0];
-    const filename = `./alignedtext_${nameFile}`;
+    const filename = `alignedtext_${nameFile}`;
 
     const addr_greek = config.greek_usfm_path;
     const greek_selectors = config.greek_selectors;
@@ -49,7 +49,7 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const pipeline = new PipelineHandler(pk.getInstance(), pipelines);
 
     verbose && console.log("running alignmentPipeline... ");
-    let output = await pipeline.runPipeline("parseGreekTESTS", {
+    let output = await pipeline.runPipeline("alignmentPipeline", {
         greek_usfm: pk.getUsfm("gre_ugnt"),
         target_lang_usfm: pk.getUsfm("fra_ust"),
         ptx: ptx,
@@ -59,11 +59,15 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     verbose && console.log("Done");
 
     if(outputperf) {
-        await saveFile(output.perf, filename + ".json");
+        await utils.saveFile(output.perf, filename + ".json");
     }
 
     if(output.reportgreekptx) {
-        await saveFile(output.reportgreekptx, "Report_greekptx_merge_" + filename + ".json");
+        await utils.saveFile(JSON.stringify(output.reportgreekptx,null, "  "), "Report_greekptx_merge_" + filename + ".json");
+    }
+
+    if(output.issues) {
+        await utils.saveFile(JSON.stringify(output.issues,null, "  "), "Issues_report_" + filename + ".json");
     }
 
     if(hashByLemma || !outputperf) {
@@ -84,7 +88,7 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
             verbose && console.log("hashing done. Saved here :", realpath);
         }
         if(!outputperf) {
-            await saveFile(outputusfm.usfm, filename + ".usfm");
+            await utils.saveFile(outputusfm.usfm, filename + ".usfm");
         }
     }
 

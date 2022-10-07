@@ -156,6 +156,9 @@ module.exports.PtxHandler = class PtxHandler {
      */
     getAllWordsFromChapterVerse(chapter, verse) {
         let words = [];
+        if(!this.arrayPtx[chapter][verse]) {
+            return words;
+        }
         for (let metaWord of this.arrayPtx[chapter][verse]) {
             if(metaWord) {
                 words.push(metaWord);
@@ -174,6 +177,9 @@ module.exports.PtxHandler = class PtxHandler {
      */
      getStrongWordsFromChapterVerse(chapter, verse) {
         let words = [];
+        if(!this.arrayPtx[chapter][verse]) {
+            return words;
+        }
         for (let metaWord of this.arrayPtx[chapter][verse]) {
             if(metaWord) {
                 words.push(metaWord["strong"]);
@@ -192,6 +198,9 @@ module.exports.PtxHandler = class PtxHandler {
      */
      getRawWordsFromChapterVerse(chapter, verse) {
         let words = [];
+        if(!this.arrayPtx[chapter][verse]) {
+            return words;
+        }
         for (let metaWord of this.arrayPtx[chapter][verse]) {
             if(metaWord) {
                 words.push(metaWord["word"]);
@@ -210,6 +219,9 @@ module.exports.PtxHandler = class PtxHandler {
      */
      getRawStringFromChapterVerse(chapter, verse) {
         let words = "";
+        if(!this.arrayPtx[chapter][verse]) {
+            return words;
+        }
         for (let i = 1; i < this.arrayPtx[chapter][verse].length; i++) {
             if(this.arrayPtx[chapter][verse][i]) {
                 words = words + " " + this.arrayPtx[chapter][verse][i]["word"];
