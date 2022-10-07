@@ -213,11 +213,6 @@ const makeAlignmentActionsv2 = {
                 let elem = structuredClone(context.sequences[0].element);
                 workspace.arraytext = text.split(/([\s’'.,:!?;-])/g);
 
-                // console.log("text == ", text);
-                // console.log("workspace.arraytext == ", workspace.arraytext);
-                // console.log("workspace.arrayWords == ", workspace.arrayWords);
-                // console.log("text == ", context.sequences[654].element.text);
-
                 let lenWords = workspace.arrayWords.length;
                 let lenArrText = workspace.arraytext.length;
                 let currentWord = "";
@@ -262,11 +257,6 @@ const makeAlignmentActionsv2 = {
                         
                         workspace.outputContentStack[0].push(endM);
 
-                        // if(punct) {
-                        //     workspace.outputContentStack[0].push(tempPunctuation + " ");
-                        // } else {
-                        //     workspace.outputContentStack[0].push(" ");
-                        // }
                     } else {
                         workspace.outputContentStack[0].push(elem.text);
                     }
@@ -353,9 +343,7 @@ const makeAlignmentActionsv2 = {
     ],
     startWrapper: [
         {
-            // description: "Transform all the wrappers into paragraphs",
             description: "Ignore startWrapper events",
-            // test: ({ context }) => context.sequences[0].element.subType === "usfm:wj",
             test: () => true,
             action: ({config, context, workspace, output}) => {
                 // const currentBlock = context.sequences[0].block;
@@ -397,26 +385,7 @@ const makeAlignmentActionsv2 = {
             action: () => {
             }
         },
-    ],
-    // startParagraph: [
-    //     {
-    //         description: "transform badly handled \\q into real paragraphs",
-    //         test: ({ context }) => context.sequences[0].block.subType === "usfm:q",
-    //         action: ({ context, workspace }) => {
-    //             const currentBlock = context.sequences[0].block;
-    //             const paraRecord = {
-    //                 type: currentBlock.type,
-    //                 subtype: "usfm:p",
-    //                 content: []
-    //             };
-    //             workspace.outputSequence.blocks.push(paraRecord);
-    //             workspace.currentContent = paraRecord.content;
-    //             workspace.outputBlock = workspace.outputSequence.blocks[workspace.outputSequence.blocks.length - 1];
-    //             workspace.outputContentStack = [workspace.outputBlock.content];
-    //             return false;
-    //         }
-    //     }
-    // ]
+    ]
 };
 
 const mergeReportCodev2 = function ({ perf, report, PTX }) {
@@ -434,7 +403,7 @@ const mergeReportCodev2 = function ({ perf, report, PTX }) {
     );
     const output = {};
     cl.renderDocument({ docId: "", config: { report, PTX }, output });
-    return { perf: output.perf, reportgreekptx: output.reportgreekptx, issues: output.issues }; // identityActions currently put PERF directly in output
+    return { perf: output.perf, reportgreekptx: output.reportgreekptx, issues: output.issues };
 }
 
 const makeAlignment = {

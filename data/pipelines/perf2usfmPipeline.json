@@ -29,7 +29,7 @@
   {
     "id": 2,
     "title": "PERF to USFM",
-    "name": "perf2usfm_v2",
+    "name": "perf2usfm",
     "type": "Transform",
     "inputs": [
       {

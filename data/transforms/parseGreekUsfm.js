@@ -6,7 +6,7 @@ const generateGreekReportActions = {
         {
             description: "Set up state variables and output",
             test: () => true,
-            action: ({config, workspace, output}) => {
+            action: ({ workspace, output }) => {
                 workspace.chapter = 1;
                 workspace.verse = 1;
                 workspace.wordPos = 1;
@@ -67,7 +67,7 @@ const generateGreekReportActions = {
             test: ({context}) => {
                 return ["chapter", "verses"].includes(context.sequences[0].element.subType);
             },
-            action: ({context, workspace, output}) => {
+            action: ({ context, workspace, output }) => {
                 const element = context.sequences[0].element;
                 if (element.subType === "chapter") {
                     if(element.atts["number"] > 1) {
