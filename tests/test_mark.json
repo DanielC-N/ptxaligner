@@ -1,0 +1,8 @@
+{
+  "greek_usfm_path": "https://git.door43.org/unfoldingWord/el-x-koine_ugnt/raw/branch/master/42-MRK.usfm",
+  "greek_selectors": {"lang": "gre", "abbr": "ugnt"},
+  "raw_usfm_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/source_data/usfmBooks/fr/MRK.usfm",
+  "raw_usfm_selectors": {"lang": "fra", "abbr": "ust"},
+  "ptx_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/output/fr/041.json",
+  "numbook": "41"
+}

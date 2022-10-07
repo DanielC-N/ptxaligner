@@ -5,7 +5,7 @@ const utils = require("../src/utils/utils");
 const { program } = require('commander');
 
 program
-    .version("1.2.0")
+    .version("1.3.0")
     .option('-c, --config <path...>', 'paths to the config files')
     .option('-p, --perf', 'output a perf file instead of an usfm file')
     .option('-h, --hashbylemma <path>', 'output a report listing the lemmas with all their translations in the usfm')

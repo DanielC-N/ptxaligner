@@ -7,6 +7,26 @@
     }
   },
   {
+    "id": 1,
+    "title": "Generate report",
+    "name": "calculateUsfmChapterPositions",
+    "type": "Transform",
+    "inputs": [
+      {
+        "name": "perf",
+        "type": "json",
+        "source": "Input perf"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "report",
+        "type": "json"
+      }
+    ],
+    "description": "Generate report from perf to calculate the position of the chapters"
+  },
+  {
     "id": 2,
     "title": "PERF to USFM",
     "name": "perf2usfm",
@@ -16,6 +36,11 @@
         "name": "perf",
         "type": "json",
         "source": "Input perf"
+      },
+      {
+        "name": "report",
+        "type": "json",
+        "source": "Transform 1 report"
       }
     ],
     "outputs": [

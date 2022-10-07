@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import PipelineHandler from "pipeline-handler";
 import ProskommaInterface from "./classes/ProskommaInterface";
 import Axios from "axios";
@@ -5,6 +6,15 @@ import pipelines from "../data/pipelines";
 import transforms from "../data/transforms";
 import utils from "./utils/utils";
 import glWordsForLemma from "./utils/gl_words_for_lemma";
+=======
+import PipelineHandler from 'pipeline-handler';
+import ProskommaInterface from './classes/ProskommaInterface';
+import Axios from "axios";
+import pipelines from '../data/pipelines';
+import transforms from '../data/transforms';
+import utils from "./utils/utils";
+import glWordsForLemma from './utils/gl_words_for_lemma';
+>>>>>>> main
 
 const path = require("path");
 const fse = require("fs-extra");
@@ -27,12 +37,12 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     const resolvedPath = path.resolve(rpath);
     const config = JSON.parse(fse.readFileSync(resolvedPath).toString());
     const nameFile = resolvedPath.split("/").pop().split(".")[0];
-    const filename = `./alignedtext_${nameFile}`;
+    const filename = `alignedtext_${nameFile}`;
 
     const addr_greek = config.greek_usfm_path;
-    const selectors_greek = config.greek_selectors;
+    const greek_selectors = config.greek_selectors;
     const addr_target_lang = config.raw_usfm_path;
-    const selectors_target_lang = config.raw_usfm_selectors;
+    const target_lang_selectors = config.raw_usfm_selectors;
     const addr_ptx = config.ptx_path;
     const numbook = config.numbook;
 
@@ -45,7 +55,7 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     verbose && console.log("Done");
 
     verbose && console.log("Retrieving ptx... ");
-    const ptx_titus = await getDocumentHttp(addr_ptx);
+    const ptx = await getDocumentHttp(addr_ptx);
     verbose && console.log("Done");
 
     const pipeline = new PipelineHandler(pipelines, transforms, pk.getInstance(), verbose);
@@ -65,6 +75,14 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
 
     if(outputperf) {
         await utils.saveFile(output.perf, filename + ".json");
+    }
+
+    if(output.reportgreekptx) {
+        await utils.saveFile(JSON.stringify(output.reportgreekptx,null, "  "), "Report_greekptx_merge_" + filename + ".json");
+    }
+
+    if(output.issues) {
+        await utils.saveFile(JSON.stringify(output.issues,null, "  "), "Issues_report_" + filename + ".json");
     }
 
     if(hashByLemma || !outputperf) {

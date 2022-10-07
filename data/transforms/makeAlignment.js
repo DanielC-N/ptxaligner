@@ -1,4 +1,5 @@
 import { PerfRenderFromJson, transforms, mergeActions } from 'proskomma-json-tools';
+import utils from '../../src/utils/utils';
 
 /**
  * 
@@ -114,12 +115,77 @@ const buildnewEndMileStone = function() {
     return em;
 }
 
-const makeAlignmentActions = {
+/**
+ * Merge the two greek report and PTX AND generate an error report of the missing words in the PTX.
+ * @param {Object[]} greekReport JSON report of the usfm greek
+ * @param {utils.PtxHandler} ptx parsed PTX class
+ */
+ function mergeGreekReportAndPTX(greekReport, ptx) {
+    let cnbverses = 0;
+    let cnbwords = 0;
+    let merged = [];
+    let ptxWords = null;
+    let ptxWordStrongs = null;
+    let ptxWord = null;
+    let errorReport = {};
+    greekReport.forEach((chapt, ic) => {
+        if(!chapt || ic == 0) return;
+        cnbverses = chapt.length;
+        merged[ic] = [];
+        chapt.forEach((verse, iv) => {
+            if(!verse || iv == 0) return;
+            merged[ic][iv] = [];
+            cnbwords = verse.length;
+            ptxWords = ptx.getAllWordsFromChapterVerse(ic, iv);
+            ptxWordStrongs = ptx.getStrongWordsFromChapterVerse(ic, iv);
+            verse.forEach((w, iw) => {
+                if(!w || iw == 0) return;
+                ptxWord = null;
+                // if there are as many of the same word (strong) in the ptx and the greek so...
+                if(ptxWordStrongs && ptxWordStrongs.filter(x => x===w["strong"]).length === w["occurencesLemma"]) {
+                    ptxWords.forEach((pw, ipw) => {
+                        if(!pw || ipw == 0) return;
+                        if(pw["strong"] === w["strong"]
+                            && pw["occurenceStrong"] === w["occurenceLemma"]
+                            && pw["occurencesStrong"] === w["occurencesLemma"]) {
+                            ptxWord = pw;
+                            return;
+                        }
+                    });
+                    if(ptxWord) {
+                        merged[ic][iv][iw] = w;
+                        merged[ic][iv][iw]["tgoccurence"] = ptxWord["occurence"];
+                        merged[ic][iv][iw]["tgoccurences"] = ptxWord["occurences"];
+                        merged[ic][iv][iw]["targetLinkValue"] = ptxWord["targetLinkValue"];
+                        merged[ic][iv][iw]["segment"] = ptxWord["segment"];
+                        merged[ic][iv][iw]["targetword"] = ptxWord["word"];
+                        merged[ic][iv][iw]["normalized"] = ptxWord["normalized"];
+                    }
+                } else {
+                    // TODO enhance the report
+                    errorReport[ic+""+iv+""+iw+""] = greekReport[ic][iv][iw];
+                    return;
+                }
+            });
+        });
+    });
+    errorReport["total"] = Object.keys(errorReport).length;
+    return [merged, errorReport];
+}
+
+const makeAlignmentActionsv2 = {
     startDocument: [
         {
             description: "setup",
             test: () => true,
-            action: ({ workspace }) => {
+            action: ({ workspace, config, output }) => {
+                const { report, PTX } = config;
+                workspace.handler = new utils.PtxHandler(PTX);
+                workspace.handler.startParsing();
+                [workspace.merged, output.issues] = mergeGreekReportAndPTX(report, workspace.handler);
+
+                output.reportgreekptx = JSON.parse(JSON.stringify(workspace.merged));
+
                 workspace.chapter = null;
                 workspace.verses = null;
                 workspace.arrayWords = [];
@@ -134,7 +200,7 @@ const makeAlignmentActions = {
     text: [
         {
             description: "Output text",
-            test: ({ workspace }) => !workspace.doNotCareAboutText && workspace.isInVerse && workspace.arrayWords !== undefined && workspace.arrayWords.length > 0,
+            test: ({ workspace }) => !workspace.doNotCareAboutText && workspace.isInVerse && workspace.arrayWords && workspace.arrayWords.length > 0,
             action: ({ context, workspace, config }) => {
                 // start milestone
                 // wrapper
@@ -147,47 +213,26 @@ const makeAlignmentActions = {
                 let elem = structuredClone(context.sequences[0].element);
                 workspace.arraytext = text.split(/([\s’'.,:!?;-])/g);
 
-                // console.log("text == ", text);
-                // console.log("workspace.arraytext == ", workspace.arraytext);
-                // console.log("workspace.arrayWords == ", workspace.arrayWords);
-                // console.log("text == ", context.sequences[654].element.text);
-
-
                 let lenWords = workspace.arrayWords.length;
                 let lenArrText = workspace.arraytext.length;
                 let currentWord = "";
-                let tempPunctuation = "";
                 let lastPushed = null;
                 workspace.arraytext.forEach((word, index) => {
                     lastPushed = workspace.outputContentStack[0].at(-1);
                     if(word === '') return;
                     if(/([\s’'.,:!?;-])/.test(word)) {
-                        // if(typeof lastPushed === "string" && lastPushed.slice(-1) === " ") {
                         workspace.outputContentStack[0].push(word);
-                        // }
                         return;
                     }
-                    // let lenW = word.length;
-                    // let charLast = word.charAt(lenW-1);
 
-                    // if the word ends by a punctuation we remove it
-                    
-                    // let punct = false;
-                    // if(endOrBeginPunctuation(word, true)) {
-                    //     let realW = word.trim().substring(0, lenW-1);
-                    //     tempPunctuation = charLast;
-                    //     elem.text = realW;
-                    //     punct = true;
-                    // } else {
-                    // }
                     elem.text = word;
                     
                     let found = false;
                     let i = 1;
                     
                     while(i < lenWords) {
-                        if(workspace.arrayWords[i] !== undefined && "word" in workspace.arrayWords[i]) {
-                            currentWord = workspace.arrayWords[i]["word"];
+                        if(workspace.arrayWords[i] !== undefined && "targetword" in workspace.arrayWords[i]) {
+                            currentWord = workspace.arrayWords[i]["targetword"];
                             if(currentWord === elem.text) {
                                 found = true;
                                 break;
@@ -199,12 +244,12 @@ const makeAlignmentActions = {
                     if(found) {
                         // startmilestone etc ...
                         let theWrapper = workspace.arrayWords[i];
-                        let startM = buildANewStartMilestone(theWrapper["strong"], theWrapper["lemma"], theWrapper["content"], theWrapper["morph"],
-                        theWrapper["greekoccurence"] ?? 1, theWrapper["greekoccurences"] ?? 1);
+                        let startM = buildANewStartMilestone(theWrapper["strong"], theWrapper["lemma"], theWrapper["word"], theWrapper["morph"],
+                        theWrapper["occurence"] ?? 1, theWrapper["occurences"] ?? 1);
 
                         workspace.outputContentStack[0].push(startM);
 
-                        let wrapper = buildWrapper(elem.text, theWrapper["frenchoccurence"] ?? 1, theWrapper["frenchoccurences"] ?? 1);
+                        let wrapper = buildWrapper(elem.text, theWrapper["tgoccurence"] ?? 1, theWrapper["tgoccurences"] ?? 1);
 
                         workspace.outputContentStack[0].push(wrapper);
                         
@@ -212,11 +257,6 @@ const makeAlignmentActions = {
                         
                         workspace.outputContentStack[0].push(endM);
 
-                        // if(punct) {
-                        //     workspace.outputContentStack[0].push(tempPunctuation + " ");
-                        // } else {
-                        //     workspace.outputContentStack[0].push(" ");
-                        // }
                     } else {
                         workspace.outputContentStack[0].push(elem.text);
                     }
@@ -283,8 +323,8 @@ const makeAlignmentActions = {
                     subtype: element.subType,
                 };
                 
-                const verseRecords = reportRecordsForCV(config.report, workspace.chapter, workspace.verses);
-                if (verseRecords.length > 0) {
+                const verseRecords = reportRecordsForCV(workspace.merged, workspace.chapter, workspace.verses);
+                if (verseRecords && verseRecords.length > 0) {
                     markRecord.metaContent = [];
                     for (const vr of verseRecords) {
                         for (const payloadContent of vr.payload) {
@@ -295,7 +335,7 @@ const makeAlignmentActions = {
                 if (element.atts) {
                     markRecord.atts = element.atts;
                 }
-                workspace.arrayWords = config.report[workspace.chapter][workspace.verses];
+                workspace.arrayWords = workspace.merged[workspace.chapter][workspace.verses];
                 workspace.outputContentStack[0].push(markRecord);
                 return false;
             }
@@ -303,9 +343,7 @@ const makeAlignmentActions = {
     ],
     startWrapper: [
         {
-            // description: "Transform all the wrappers into paragraphs",
             description: "Ignore startWrapper events",
-            // test: ({ context }) => context.sequences[0].element.subType === "usfm:wj",
             test: () => true,
             action: ({config, context, workspace, output}) => {
                 // const currentBlock = context.sequences[0].block;
@@ -347,33 +385,13 @@ const makeAlignmentActions = {
             action: () => {
             }
         },
-    ],
-    // startParagraph: [
-    //     {
-    //         description: "transform badly handled \\q into real paragraphs",
-    //         test: ({ context }) => context.sequences[0].block.subType === "usfm:q",
-    //         action: ({ context, workspace }) => {
-    //             const currentBlock = context.sequences[0].block;
-    //             const paraRecord = {
-    //                 type: currentBlock.type,
-    //                 subtype: "usfm:p",
-    //                 content: []
-    //             };
-    //             workspace.outputSequence.blocks.push(paraRecord);
-    //             workspace.currentContent = paraRecord.content;
-    //             workspace.outputBlock = workspace.outputSequence.blocks[workspace.outputSequence.blocks.length - 1];
-    //             workspace.outputContentStack = [workspace.outputBlock.content];
-    //             return false;
-    //         }
-    //     }
-    // ]
+    ]
 };
 
-const mergeReportCode = function ({ perf, report }) {
-    
+const mergeReportCodev2 = function ({ perf, report, PTX }) {
     const actions = mergeActions(
         [
-            makeAlignmentActions,
+            makeAlignmentActionsv2,
             transforms.perf2perf.identityActions
         ]
     );
@@ -384,12 +402,12 @@ const mergeReportCode = function ({ perf, report }) {
         }
     );
     const output = {};
-    cl.renderDocument({ docId: "", config: { report }, output });
-    return { perf: output.perf }; // identityActions currently put PERF directly in output
+    cl.renderDocument({ docId: "", config: { report, PTX }, output });
+    return { perf: output.perf, reportgreekptx: output.reportgreekptx, issues: output.issues };
 }
 
-const mergeReport = {
-    name: "mergeReport",
+const makeAlignment = {
+    name: "makeAlignment",
     type: "Transform",
     description: "PERF=>PERF adds report to verses",
     inputs: [
@@ -402,18 +420,27 @@ const mergeReport = {
             name: "report",
             type: "json",
             source: ""
+        },
+        {
+            name: "PTX",
+            type: "text",
+            source: ""
         }
     ],
     outputs: [
         {
             name: "perf",
-            type: "json",
+            type: "json"
+        },
+        {
+            name: "reportgreekptx",
+            type: "json"
         },
         {
             name: "issues",
             type: "json"
         }
     ],
-    code: mergeReportCode
+    code: mergeReportCodev2
 }
-export default mergeReport;
+export default makeAlignment;
