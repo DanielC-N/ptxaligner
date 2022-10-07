@@ -127,7 +127,6 @@ const buildnewEndMileStone = function() {
     let ptxWords = null;
     let ptxWordStrongs = null;
     let ptxWord = null;
-    let greekWords = null;
     let errorReport = {};
     greekReport.forEach((chapt, ic) => {
         if(!chapt || ic == 0) return;
@@ -184,9 +183,9 @@ const makeAlignmentActionsv2 = {
                 workspace.handler.startParsing();
                 [workspace.merged, output.issues] = mergeGreekReportAndPTX(report, workspace.handler);
 
-                output.reportgreekptx = structuredClone(workspace.merged);
+                output.reportgreekptx = JSON.parse(JSON.stringify(workspace.merged));
 
-                console.log(JSON.stringify(output.reportgreekptx,null, "  "))
+                console.log(JSON.stringify(output.reportgreekptx, null, "  "));
                 nimportequoi.output == "nimportequoi";
                 workspace.chapter = null;
                 workspace.verses = null;
