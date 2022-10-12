@@ -116,7 +116,7 @@ module.exports.parseLSG = function parseLSG(rpath) {
 
         words.forEach((word, i) => {
             if(i%2 === 0){
-                even = word.replace(/([\s’'.,:!?; -]+)$|^([\s’'.,:!?; -]+)|([’'.,:!?;-]+)/g, "");
+                even = word.replace(/([\s’'.,:!?; -]+)$|^([\s’'.,:!?; -]+)/g, "");
             } else {
                 if(even !== "") {
                     mw = word.match(/\d+/)[0];
