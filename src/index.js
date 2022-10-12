@@ -22,7 +22,7 @@ async function getDocumentHttp(addr) {
     }
 }
 
-module.exports = async function ptxaligner(rpath, outputperf=false, verbose=false, hashByLemma=false, pathhash="") {
+module.exports = async function ptxaligner(rpath, outputperf=false, verbose=false, hashByLemma=false, pathhash="", saveXml=false) {
     const pk = new ProskommaInterface();
     const resolvedPath = path.resolve(rpath);
     const config = JSON.parse(fse.readFileSync(resolvedPath).toString());
@@ -43,17 +43,18 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
     await pk.addDocumentHttp(addr_target_lang);
     verbose && console.log("Done");
 
-    verbose && console.log("Retrieving ptx... ");
+    verbose && console.log("Retrieving and parsing ptx... ");
     const ptx = await getDocumentHttp(addr_ptx);
+    const jsonPtx = utils.parseXML(ptx, nameFile, saveXml);
     verbose && console.log("Done");
     
     const pipeline = new PipelineHandler(pipelines, transforms, pk.getInstance(), verbose);
 
     verbose && console.log("running alignmentPipeline... ");
     let output = await pipeline.runPipeline("alignmentPipeline", {
-        greek_usfm: pk.getUsfm("gre_ugnt"),
-        target_lang_usfm: pk.getUsfm("fra_ust"),
-        ptx: ptx,
+        greek_usfm: pk.getUsfm(greek_selectors.lang + "_" + greek_selectors.abbr),
+        target_lang_usfm: pk.getUsfm(target_lang_selectors.lang + "_" + target_lang_selectors.abbr),
+        ptx: jsonPtx,
         greek_selectors: greek_selectors,
         target_lang_selectors: target_lang_selectors
     });
@@ -93,5 +94,6 @@ module.exports = async function ptxaligner(rpath, outputperf=false, verbose=fals
         }
     }
 
-    console.log("File saved as " + filename);
+    console.log("File saved as " + filename + ".usfm");
+    console.log(output.issues.total + " greek words not aligned");
 }

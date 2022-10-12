@@ -3,5 +3,5 @@
   "greek_selectors": {"lang": "gre", "abbr": "ugnt"},
   "raw_usfm_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/source_data/usfmBooks/es/86-TITspaRV1909.usfm",
   "raw_usfm_selectors": {"lang": "esp", "abbr": "ust"},
-  "ptx_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/output/es/056.json"
+  "ptx_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/source_data/alignment/esPtx/mappings-056.xml"
 }

@@ -3,6 +3,6 @@
   "greek_selectors": {"lang": "gre", "abbr": "ugnt"},
   "raw_usfm_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/source_data/usfmBooks/fr/MRK.usfm",
   "raw_usfm_selectors": {"lang": "fra", "abbr": "ust"},
-  "ptx_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/output/fr/041.json",
+  "ptx_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/source_data/alignment/frPtx/mappings-041.xml",
   "numbook": "41"
 }

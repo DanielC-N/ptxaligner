@@ -1,5 +1,7 @@
 const fse = require('fs-extra');
 const path = require('path');
+const {DOMParser} = require('@xmldom/xmldom');
+const {ptBookArray} = require('proskomma-utils');
 
 module.exports.saveFile = async function saveFile(file, rpath="./output.json") {
     try {
@@ -27,6 +29,46 @@ module.exports.handleOccurences = function handleOccurences(arrayWords) {
         posOccurence[i] = occurences.get(arrayWords[i]);
     };
     return [occurences, posOccurence];
+}
+
+module.exports.parseXML = function parseXML(ptxStr, filename="", saveFile=false) {
+    const dom = new DOMParser().parseFromString(ptxStr);
+
+    const ret = [];
+    const childNodes = dom.documentElement.childNodes;
+    for (let i = 0; i < childNodes.length; i++) {
+        if (childNodes[i].nodeType !== 1) continue;
+        const mapping = childNodes[i].getAttribute('Reference');
+        const warning = childNodes[i].getAttribute('Warning');
+        const sourceLink = childNodes[i].getElementsByTagName("SourceLink")[0];
+        const targetLinkValue = childNodes[i].getElementsByTagName("TargetLink")[0].firstChild.nodeValue;
+        const mappingJson = {
+            source: {
+                glWord: sourceLink.getAttribute("Word"),
+                strong: sourceLink.getAttribute("Strong"),
+                book: ptBookArray[parseInt(mapping.substring(0, 3)) - 1].code,
+                chapter: parseInt(mapping.substring(3, 6)),
+                verse: parseInt(mapping.substring(6, 9)),
+                segment: parseInt(mapping.substring(9, 11)),
+            },
+            target: {
+                targetLinkValue,
+                book: ptBookArray[parseInt(targetLinkValue.substring(0, 3)) - 1].code,
+                chapter: parseInt(targetLinkValue.substring(3, 6)),
+                verse: parseInt(targetLinkValue.substring(6, 9)),
+                segment: parseInt(targetLinkValue.substring(9, 11)),
+                word: parseInt(targetLinkValue.substring(11, 14)) / 2,
+            }
+        };
+        mappingJson.warning = (warning === "true");
+
+        ret.push(mappingJson);
+    }
+    if(saveFile) {
+        fse.writeJsonSync(filename + "outputptx.json", ret);
+    }
+
+    return ret;
 }
 
 

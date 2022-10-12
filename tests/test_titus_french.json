@@ -3,5 +3,5 @@
   "greek_selectors": {"lang": "gre", "abbr": "ugnt"},
   "raw_usfm_path": "https://raw.githubusercontent.com/Proskomma/perfidy/ptxAlign/dataSources/lsg_tit.usfm",
   "raw_usfm_selectors": {"lang": "fra", "abbr": "ust"},
-  "ptx_path": "https://raw.githubusercontent.com/Proskomma/perfidy/main/dataSources/ptx_tit_alignment.json"
+  "ptx_path": "https://raw.githubusercontent.com/mvh-solutions/aligned-lsg1910/main/source_data/alignment/frPtx/mappings-056.xml"
 }
