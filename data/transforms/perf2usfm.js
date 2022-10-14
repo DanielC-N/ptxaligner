@@ -8,25 +8,29 @@ const oneifyTag = t => {
 }
 
 const buildMilestone = (atts, type) => {
-    if(!atts["x-morph"]) console.log(atts);
-    let xstrong = atts["x-strong"][0];
-    let xlemma = atts["x-lemma"][0];
-    let xmorph = atts["x-morph"] === undefined ? "" : atts["x-morph"].join(',');
-    let xoccurrence = atts["x-occurrence"][0];
-    let xoccurrences = atts["x-occurrences"][0];
-    let xcontent = atts["x-content"][0] === undefined ? "" : atts["x-content"][0];
-
-    return `\\${type}-s |x-strong="${xstrong}" x-lemma="${xlemma}" x-morph="${xmorph}" x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}" x-content="${xcontent}"\\*`
+    let str=`\\${type}-s |`;
+    for (let [key, value] of Object.entries(atts)) {
+        if(key === "x-morph") {
+            str = str + oneifyTag(key) + "=\"" + value.join(',') + "\" ";
+        } else {
+            str = str + oneifyTag(key) + "=\"" + value + "\" ";
+        }
+    };
+    return str + "\\*";
 }
 
 const buildEndWrapper = (atts, type, isnested = false) => {
-    let xoccurrence = atts["x-occurrence"][0];
-    let xoccurrences = atts["x-occurrences"][0];
+    let str="|";
+    for (let [key, value] of Object.entries(atts)) {
+        str = str + oneifyTag(key) + "=\"" + value + "\" ";
+    };
+    str = str + "\\";
+
     // if it's nested, we simply add a "+" sign before the type
     if(isnested) {
-        return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\+${type}*`;
+        str = str + "+";
     }
-    return `|x-occurrence="${xoccurrence}" x-occurrences="${xoccurrences}"\\${type}*`;
+    return str + type + "*";
 }
 
 const localToUsfmActions = {
@@ -145,7 +149,7 @@ const localToUsfmActions = {
     ],
     endMilestone: [
         {
-            description: "Output start milestone",
+            description: "Output end milestone",
             test: () => true,
             action: ({context, workspace}) => {
                 workspace.usfmBits.push(`\\${oneifyTag(context.sequences[0].element.subType.split(':')[1])}-e\\*`);
@@ -245,7 +249,7 @@ const perf2usfmCode = function ({perf, report}) {
     const cl = new PerfRenderFromJson({srcJson: perf, actions: localToUsfmActions});
     const output = {};
     cl.renderDocument({docId: "", config: { report }, output});
-        return {usfm: output.usfm};
+    return {usfm: output.usfm};
 }
 
 const perf2usfm = {
