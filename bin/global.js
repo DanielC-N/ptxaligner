@@ -4,7 +4,7 @@ const ptxaligner = require('../dist/main.js');
 const { program } = require('commander');
 
 program
-    .version("1.4.0")
+    .version("1.4.1")
     .option('-c, --config <path...>', 'paths to the config files')
     .option('-p, --perf', 'output a perf file instead of an usfm file')
     .option('-l, --hashbylemma <path>', 'generate a report that link the lemmas with their translation')
