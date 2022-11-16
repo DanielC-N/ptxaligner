@@ -1,5 +1,9 @@
 # ptxaligner
 
+## what does this package do ?
+
+![will_do](./will_do.jpg)
+
 ## Usage as a npm package
 
 ```
